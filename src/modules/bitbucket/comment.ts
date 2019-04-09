@@ -6,7 +6,7 @@ import error from '../../utils/error'
 
 const { internalError } = error('bitbucket comment:')
 
-const Authorization = 'Bearer OTQyODM5NTkyMzQ2OqjtV+lhUZPQdkGwO7kqarTLMxrB'
+const Authorization = global.bitbucketKey
 const baseUrl = ({ repository: { slug, name }, pullRequestId }: Core.PullRequest) =>
 	`${global.bitbucket}/rest/api/1.0/${slug}/repos/${name}/pull-requests/${pullRequestId}/comments/`
 

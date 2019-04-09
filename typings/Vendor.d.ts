@@ -6,6 +6,7 @@ declare namespace NodeJS {
 		appRoot: string
 		storage: string
 		bitbucket: string
+		bitbucketKey: string
 	}
 }
 

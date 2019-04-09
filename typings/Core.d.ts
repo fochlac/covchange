@@ -44,7 +44,7 @@ declare namespace Core {
 		ready: Promise<void>
 		exists: (repository: Repository, pullRequestId: string) => Promise<boolean>
 		get: (repository: Repository, pullRequestId: string) => Promise<PullRequest>
-		create: (rawPullRequest: PullRequestRest) => Promise<PullRequest>
+		create: (rawPullRequest: PullRequestRest, base: BaseBranch) => Promise<PullRequest>
 	}
 
 	interface Comment {
@@ -58,6 +58,11 @@ declare namespace Core {
 		report: Report
 	}
 
+	interface BaseBranch {
+		name: string
+		repository: Repository
+	}
+
 	interface Repository {
 		name: string
 		slug: string
@@ -67,7 +72,6 @@ declare namespace Core {
 		pullRequestId: string
 		repository: Repository
 		report: Report
-		base: string
 	}
 
 	interface Branch {
@@ -81,7 +85,7 @@ declare namespace Core {
 	interface PullRequest {
 		pullRequestId: string
 		repository: Repository
-		base: string
+		base: BaseBranch
 		id: Id
 		lastModified: Timestamp
 		reports?: Report[]

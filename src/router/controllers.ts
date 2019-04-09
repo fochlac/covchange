@@ -1,5 +1,6 @@
 import { branchDb } from '../modules/db/branches'
-import { createComment } from '../../dist/modules/bitbucket/comment'
+import { createComment } from '../modules/bitbucket/comment'
+import { getBaseBranchFromPullrequest } from '../modules/bitbucket/getBase'
 import error from '../utils/error'
 import { pullRequestDb } from '../modules/db/pull-requests'
 
@@ -18,11 +19,12 @@ export const addBranchReport = async (req, res) => {
 
 export const addPullRequestReport = async (req, res) => {
 	try {
-		const { base, repository, report, pullRequestId } = req.body
-		const action = (await pullRequestDb.exists(repository, pullRequestId)) ? pullRequestDb.update : pullRequestDb.create
+		const pullRequestRest = req.body as Core.PullRequestRest
+		const action = (await pullRequestDb.exists(pullRequestRest.repository, pullRequestRest.pullRequestId)) ? pullRequestDb.update : pullRequestDb.create
+		const base = await getBaseBranchFromPullrequest(pullRequestRest)
 
-		const pr = await action({ base, repository, report, pullRequestId })
-		const baseBranch = await branchDb.get(repository, base)
+		const pr = await action(pullRequestRest, base)
+		const baseBranch = await branchDb.get(base.repository, base.name)
 
 		res.status(200).send({ success: true })
 
@@ -32,3 +34,4 @@ export const addPullRequestReport = async (req, res) => {
 		internalError(2, 'Error handling pull request:')(err)
 	}
 }
+

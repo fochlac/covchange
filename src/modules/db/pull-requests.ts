@@ -50,7 +50,7 @@ class PullRequestDb implements Core.PullRequestDb {
 		return pullRequest
 	}
 
-	async create({ pullRequestId, repository, report, base }: Core.PullRequestRest): Promise<Core.PullRequest> {
+	async create({ pullRequestId, repository, report }: Core.PullRequestRest, base: Core.BaseBranch): Promise<Core.PullRequest> {
 		await this.ready
 		if (await this.exists(repository, pullRequestId)) return Promise.reject('PullRequest already exists')
 		const id = forge.pullRequestId({ repository, pullRequestId })
