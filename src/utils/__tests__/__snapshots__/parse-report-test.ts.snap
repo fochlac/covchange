@@ -1,0 +1,288 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createReportFromXML should properly parse an xml file 1`] = `
+Object {
+  "files": Object {
+    "orders/app/components/order-tours-tab/order-tours-tab.js": Object {
+      "metrics": Object {
+        "conditionalCov": 0,
+        "conditionals": 35,
+        "statementCov": 0,
+        "statements": 34,
+      },
+      "name": "order-tours-tab.js",
+    },
+    "orders/app/components/order-tours-tab/order-tours-table-config.js": Object {
+      "metrics": Object {
+        "conditionalCov": 0,
+        "conditionals": 26,
+        "statementCov": 0,
+        "statements": 8,
+      },
+      "name": "order-tours-table-config.js",
+    },
+    "orders/app/components/order-tours-tab/order-tours-table-renderer.js": Object {
+      "metrics": Object {
+        "conditionalCov": 0,
+        "conditionals": 35,
+        "statementCov": 0,
+        "statements": 35,
+      },
+      "name": "order-tours-table-renderer.js",
+    },
+    "orders/app/components/order-tours-tab/order-tours-table.js": Object {
+      "metrics": Object {
+        "conditionalCov": 0,
+        "conditionals": 41,
+        "statementCov": 0,
+        "statements": 27,
+      },
+      "name": "order-tours-table.js",
+    },
+    "orders/app/components/orders-filter-bar.js": Object {
+      "metrics": Object {
+        "conditionalCov": 31.8,
+        "conditionals": 22,
+        "statementCov": 83.6,
+        "statements": 67,
+      },
+      "name": "orders-filter-bar.js",
+    },
+    "orders/app/components/orders-subviews.js": Object {
+      "metrics": Object {
+        "conditionalCov": 100,
+        "conditionals": 17,
+        "statementCov": 81,
+        "statements": 21,
+      },
+      "name": "orders-subviews.js",
+    },
+    "orders/app/components/orders-tab/order-type-filter-dropdown.js": Object {
+      "metrics": Object {
+        "conditionalCov": 0,
+        "conditionals": 0,
+        "statementCov": 100,
+        "statements": 6,
+      },
+      "name": "order-type-filter-dropdown.js",
+    },
+    "orders/app/components/orders-tab/orders-date-picker.js": Object {
+      "metrics": Object {
+        "conditionalCov": 50,
+        "conditionals": 2,
+        "statementCov": 100,
+        "statements": 5,
+      },
+      "name": "orders-date-picker.js",
+    },
+    "orders/app/components/orders-tab/orders-tab.js": Object {
+      "metrics": Object {
+        "conditionalCov": 83.3,
+        "conditionals": 6,
+        "statementCov": 65.4,
+        "statements": 26,
+      },
+      "name": "orders-tab.js",
+    },
+    "orders/app/components/orders-view.js": Object {
+      "metrics": Object {
+        "conditionalCov": 100,
+        "conditionals": 17,
+        "statementCov": 100,
+        "statements": 47,
+      },
+      "name": "orders-view.js",
+    },
+    "orders/app/index.js": Object {
+      "metrics": Object {
+        "conditionalCov": 0,
+        "conditionals": 4,
+        "statementCov": 0,
+        "statements": 12,
+      },
+      "name": "index.js",
+    },
+    "orders/module.js": Object {
+      "metrics": Object {
+        "conditionalCov": 0,
+        "conditionals": 4,
+        "statementCov": 0,
+        "statements": 1,
+      },
+      "name": "module.js",
+    },
+  },
+  "folders": Object {
+    "orders": Object {
+      "files": Array [
+        Object {
+          "metrics": Object {
+            "conditionalCov": 0,
+            "conditionals": 4,
+            "statementCov": 0,
+            "statements": 1,
+          },
+          "name": "module.js",
+        },
+      ],
+      "metrics": Object {
+        "conditionalCov": 0,
+        "conditionals": 4,
+        "statementCov": 0,
+        "statements": 1,
+      },
+      "name": "orders",
+    },
+    "orders.app": Object {
+      "files": Array [
+        Object {
+          "metrics": Object {
+            "conditionalCov": 0,
+            "conditionals": 4,
+            "statementCov": 0,
+            "statements": 12,
+          },
+          "name": "index.js",
+        },
+      ],
+      "metrics": Object {
+        "conditionalCov": 0,
+        "conditionals": 4,
+        "statementCov": 0,
+        "statements": 12,
+      },
+      "name": "orders.app",
+    },
+    "orders.app.components": Object {
+      "files": Array [
+        Object {
+          "metrics": Object {
+            "conditionalCov": 31.8,
+            "conditionals": 22,
+            "statementCov": 83.6,
+            "statements": 67,
+          },
+          "name": "orders-filter-bar.js",
+        },
+        Object {
+          "metrics": Object {
+            "conditionalCov": 100,
+            "conditionals": 17,
+            "statementCov": 81,
+            "statements": 21,
+          },
+          "name": "orders-subviews.js",
+        },
+        Object {
+          "metrics": Object {
+            "conditionalCov": 100,
+            "conditionals": 17,
+            "statementCov": 100,
+            "statements": 47,
+          },
+          "name": "orders-view.js",
+        },
+      ],
+      "metrics": Object {
+        "conditionalCov": 73.2,
+        "conditionals": 56,
+        "statementCov": 88.9,
+        "statements": 135,
+      },
+      "name": "orders.app.components",
+    },
+    "orders.app.components.order-tours-tab": Object {
+      "files": Array [
+        Object {
+          "metrics": Object {
+            "conditionalCov": 0,
+            "conditionals": 35,
+            "statementCov": 0,
+            "statements": 34,
+          },
+          "name": "order-tours-tab.js",
+        },
+        Object {
+          "metrics": Object {
+            "conditionalCov": 0,
+            "conditionals": 26,
+            "statementCov": 0,
+            "statements": 8,
+          },
+          "name": "order-tours-table-config.js",
+        },
+        Object {
+          "metrics": Object {
+            "conditionalCov": 0,
+            "conditionals": 35,
+            "statementCov": 0,
+            "statements": 35,
+          },
+          "name": "order-tours-table-renderer.js",
+        },
+        Object {
+          "metrics": Object {
+            "conditionalCov": 0,
+            "conditionals": 41,
+            "statementCov": 0,
+            "statements": 27,
+          },
+          "name": "order-tours-table.js",
+        },
+      ],
+      "metrics": Object {
+        "conditionalCov": 0,
+        "conditionals": 137,
+        "statementCov": 0,
+        "statements": 104,
+      },
+      "name": "orders.app.components.order-tours-tab",
+    },
+    "orders.app.components.orders-tab": Object {
+      "files": Array [
+        Object {
+          "metrics": Object {
+            "conditionalCov": 0,
+            "conditionals": 0,
+            "statementCov": 100,
+            "statements": 6,
+          },
+          "name": "order-type-filter-dropdown.js",
+        },
+        Object {
+          "metrics": Object {
+            "conditionalCov": 50,
+            "conditionals": 2,
+            "statementCov": 100,
+            "statements": 5,
+          },
+          "name": "orders-date-picker.js",
+        },
+        Object {
+          "metrics": Object {
+            "conditionalCov": 83.3,
+            "conditionals": 6,
+            "statementCov": 65.4,
+            "statements": 26,
+          },
+          "name": "orders-tab.js",
+        },
+      ],
+      "metrics": Object {
+        "conditionalCov": 75,
+        "conditionals": 8,
+        "statementCov": 75.7,
+        "statements": 37,
+      },
+      "name": "orders.app.components.orders-tab",
+    },
+  },
+  "metrics": Object {
+    "conditionalCov": 72.9,
+    "conditionals": 2479,
+    "statementCov": 84.8,
+    "statements": 4042,
+  },
+  "timestamp": 1543960595393,
+}
+`;

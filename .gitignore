@@ -1,0 +1,9 @@
+node_modules/
+coverage/
+dist/
+storage/
+.idea/
+package-lock.json
+.vscode
+log/
+/static/

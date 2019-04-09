@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`diff-module should find the diff between the reports 1`] = `
+Object {
+  "changed": Object {
+    "orders/app/components/order-tours-tab/order-tours-table-renderer.js": Object {
+      "changed": Object {
+        "conditionalCov": 31.4,
+        "conditionals": 35,
+        "statementCov": 44.4,
+        "statements": 45,
+      },
+      "diff": Object {
+        "conditionalCov": 31.4,
+        "conditionals": 0,
+        "statementCov": 44.4,
+        "statements": 10,
+      },
+      "original": Object {
+        "conditionalCov": 0,
+        "conditionals": 35,
+        "statementCov": 0,
+        "statements": 35,
+      },
+    },
+    "orders/app/components/orders-filter-bar.js": Object {
+      "changed": Object {
+        "conditionalCov": 50,
+        "conditionals": 22,
+        "statementCov": 96.4,
+        "statements": 55,
+      },
+      "diff": Object {
+        "conditionalCov": 18.2,
+        "conditionals": 0,
+        "statementCov": 12.8,
+        "statements": -12,
+      },
+      "original": Object {
+        "conditionalCov": 31.8,
+        "conditionals": 22,
+        "statementCov": 83.6,
+        "statements": 67,
+      },
+    },
+    "orders/app/components/orders-subviews.js": Object {
+      "changed": Object {
+        "conditionalCov": 94.7,
+        "conditionals": 19,
+        "statementCov": 68,
+        "statements": 25,
+      },
+      "diff": Object {
+        "conditionalCov": -5.3,
+        "conditionals": 2,
+        "statementCov": -13,
+        "statements": 4,
+      },
+      "original": Object {
+        "conditionalCov": 100,
+        "conditionals": 17,
+        "statementCov": 81,
+        "statements": 21,
+      },
+    },
+    "orders/app/index.js": Object {
+      "changed": Object {
+        "conditionalCov": 0,
+        "conditionals": 4,
+        "statementCov": 7.7,
+        "statements": 13,
+      },
+      "diff": Object {
+        "conditionalCov": 0,
+        "conditionals": 0,
+        "statementCov": 7.7,
+        "statements": 1,
+      },
+      "original": Object {
+        "conditionalCov": 0,
+        "conditionals": 4,
+        "statementCov": 0,
+        "statements": 12,
+      },
+    },
+  },
+  "deleted": Array [
+    "orders/module.js",
+  ],
+  "new": Object {
+    "orders/app/components/order-tours-tab/order-tours-table-core.js": Object {
+      "conditionalCov": 71.4,
+      "conditionals": 7,
+      "statementCov": 54.5,
+      "statements": 11,
+    },
+  },
+  "total": Object {
+    "changed": Object {
+      "conditionalCov": 80.2,
+      "conditionals": 2489,
+      "statementCov": 87.2,
+      "statements": 4082,
+    },
+    "diff": Object {
+      "conditionalCov": 7.2,
+      "conditionals": 10,
+      "statementCov": 2.4,
+      "statements": 40,
+    },
+    "original": Object {
+      "conditionalCov": 72.9,
+      "conditionals": 2479,
+      "statementCov": 84.8,
+      "statements": 4042,
+    },
+  },
+}
+`;

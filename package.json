@@ -1,0 +1,94 @@
+{
+	"name": "covchange",
+	"version": "1.0.0",
+	"description": "A server to diff clover coverage xmls and post results to bitbucket",
+	"main": "index.ts",
+	"scripts": {
+		"start": "nodemon --exec ts-node -- src/index.ts",
+		"build": "rm -rf ./dist && tsc && chmod +x ./dist/index.js",
+		"test": "jest --coverage"
+	},
+	"author": "low@fochlac.com",
+	"license": "ISC",
+	"dependencies": {
+		"abstract-express-router": "^1.3.0",
+		"body-parser": "*",
+		"clone": "*",
+		"compression": "*",
+		"cookie-parser": "*",
+		"express": "*",
+		"fast-xml-parser": "^3.12.16",
+		"fs-extra": "*",
+		"multer": "*",
+		"path": "*",
+		"request": "^2.88.0",
+		"request-promise-native": "^1.0.7"
+	},
+	"devDependencies": {
+		"@babel/plugin-proposal-async-generator-functions": "^7.2.0",
+		"@babel/plugin-proposal-class-properties": "^7.4.0",
+		"@babel/plugin-proposal-object-rest-spread": "^7.4.3",
+		"@babel/plugin-proposal-optional-catch-binding": "^7.2.0",
+		"@babel/preset-env": "^7.4.3",
+		"@babel/preset-typescript": "^7.3.3",
+		"@types/compression": "*",
+		"@types/cookie-parser": "*",
+		"@types/express": "*",
+		"@types/jest": "^24.0.11",
+		"@types/jsonwebtoken": "^8.3.2",
+		"@types/multer": "*",
+		"@types/node": "^11.13.0",
+		"babel-eslint": "^10.0.1",
+		"babel-jest": "^24.7.1",
+		"codecov": "^3.3.0",
+		"eslint": "^5.16.0",
+		"eslint-config-prettier": "^4.1.0",
+		"eslint-config-standart": "*",
+		"eslint-plugin-jest": "^22.4.1",
+		"eslint-plugin-promise": "*",
+		"eslint-plugin-react": "*",
+		"eslint-plugin-standard": "*",
+		"immutable": "^4.0.0-rc.12",
+		"jest": "^24.7.1",
+		"jest-junit": "^6.3.0",
+		"nodemon": "*",
+		"sinon": "^7.3.1",
+		"supertest": "^4.0.2",
+		"ts-node": "^8.0.3",
+		"tsc": "*",
+		"tsconfig-paths": "*",
+		"typescript": "^3.4.2",
+		"typescript-eslint-parser": "^22.0.0",
+		"unexpected": "^11.2.0",
+		"unexpected-immutable": "^0.5.0",
+		"unexpected-sinon": "*"
+	},
+	"nodemonConfig": {
+		"ignore": [
+			"storage/**/*"
+		]
+	},
+	"jest": {
+		"coverageDirectory": "./coverage/",
+		"coveragePathIgnorePatterns": [
+			"<rootDir>/node_modules/"
+		],
+		"transform": {
+			"^.+\\.(ts|js)$": "babel-jest"
+		},
+		"testMatch": [
+			"**/__tests__/*-test.{js,ts}"
+		],
+		"testEnvironment": "node",
+		"collectCoverageFrom": [
+			"src/**/*.{js,ts}"
+		],
+		"moduleFileExtensions": [
+			"js",
+			"ts"
+		],
+		"moduleDirectories": [
+			"node_modules"
+		]
+	}
+}

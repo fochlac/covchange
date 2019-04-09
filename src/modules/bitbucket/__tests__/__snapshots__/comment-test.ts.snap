@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`diff-module should find the diff between the reports 1`] = `
+Array [
+  Object {
+    "body": Object {
+      "text": "### Coverage Statistics
+#### :large_blue_circle: This pull request will increase total coverage by 2.4% to 87.2%.
+
+| File | Change | Coverage |
+|---|---|---|
+| orders/app/components/orders-subviews.js | :red_circle: -13% | :u6709: 68% |
+| orders/app/index.js | :large_blue_circle: 7.7% | :u7981: 7.7% |
+| orders/app/components/orders-filter-bar.js | :large_blue_circle: 12.8% | :u6307: 96.4% |
+| orders/app/components/order-tours-tab/order-tours-table-renderer.js | :large_blue_circle: 44.4% | :u7981: 44.4% |
+| orders/app/components/order-tours-tab/order-tours-table-core.js | :sparkles: *new* | :u6709: 54.5% |
+##### Deleted files
+\`\`\`diff
+- orders/module.js
+\`\`\`",
+    },
+    "headers": Object {
+      "Authorization": "Bearer OTQyODM5NTkyMzQ2OqjtV+lhUZPQdkGwO7kqarTLMxrB",
+    },
+    "json": true,
+    "method": "POST",
+    "uri": "undefinedrest/api/1.0/slug/name/pull-requests/12345/comments/undefined",
+  },
+]
+`;
