@@ -1,14 +1,27 @@
 import * as request from 'request-promise-native'
 
+import { Bitbucket } from './api'
 import { commentDb } from '../db/comments'
 import { diffReports } from '../diff/diff'
-import error from '../../utils/error'
 
-const { internalError } = error('bitbucket comment:')
+const createApiSlug = ({ repository: { slug, name }, pullRequestId }: Core.PullRequest, commentId?: number) =>
+	`${slug}/repos/${name}/pull-requests/${pullRequestId}/comments/${commentId || ''}`
 
-const Authorization = global.bitbucketKey
-const baseUrl = ({ repository: { slug, name }, pullRequestId }: Core.PullRequest) =>
-	`${global.bitbucket}/rest/api/1.0/${slug}/repos/${name}/pull-requests/${pullRequestId}/comments/`
+export async function submitResults(base: Core.Branch, pr: Core.PullRequest) {
+	const diff = diffReports(base.reports[0], pr.reports[0])
+	const comment = createCommentObject(diff)
+	const existingComment = await commentDb.get(pr.repository, pr.pullRequestId)
+
+	return existingComment ? updateComment(comment, existingComment, pr) : createComment(comment, pr)
+}
+
+function updateComment(comment, existingComment, pr) {
+	return Bitbucket.put(createApiSlug(pr, existingComment.commentId), comment)
+}
+
+function createComment(comment, pr) {
+	return Bitbucket.put(createApiSlug(pr), comment)
+}
 
 const symbolsMap = {
 	critical: ':u7981:',
@@ -21,28 +34,6 @@ const getSymbolFromCoverage = (metrics: Core.Metrics) => {
 	const { statementCov, statements } = metrics
 	const stringcode = statementCov > 85 ? 'high' : statementCov > 70 || statements <= 5 ? 'medium' : statementCov > 50 ? 'low' : 'critical'
 	return symbolsMap[stringcode]
-}
-
-export function createComment(base: Core.Branch, pr: Core.PullRequest) {
-	const diffLatest = diffReports(base.reports[0], pr.reports[0])
-
-	return sendComment(pr, createCommentObject(diffLatest))
-}
-
-async function sendComment(pr, comment) {
-	const existingComment = await commentDb.get(pr.repository, pr.pullRequestId)
-	const uri = baseUrl(pr) + (existingComment ? existingComment.commentId : '')
-	const method = existingComment ? 'PUT' : 'POST'
-
-	return request({
-		uri,
-		method,
-		json: true,
-		headers: {
-			Authorization,
-		},
-		body: comment,
-	}).catch(internalError(2, 'Error posting comment.'))
 }
 
 function createCommentObject(diff: Core.DiffReport) {

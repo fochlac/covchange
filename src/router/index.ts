@@ -1,4 +1,4 @@
-import { addBranchReport, addPullRequestReport, getPullrequest } from './controllers'
+import { addBranchReport, addPullRequestReport } from './controllers'
 import { branch, pullRequestId, report, repository } from './validators'
 
 import { createRouter } from 'abstract-express-router'
@@ -25,7 +25,7 @@ export const router = createRouter(
 					middleware: [parseReport],
 					controller: addPullRequestReport,
 				},
-			}
+			},
 		},
 	},
 	{
