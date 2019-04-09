@@ -77,7 +77,7 @@
 			"^.+\\.(ts|js)$": "babel-jest"
 		},
 		"testMatch": [
-			"**/__tests__/*-test.{js,ts}"
+			"**/src/**/__tests__/*-test.{js,ts}"
 		],
 		"testEnvironment": "node",
 		"collectCoverageFrom": [

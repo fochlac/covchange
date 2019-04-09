@@ -28,22 +28,22 @@ declare namespace Core {
 		db: FileDb
 		ready: Promise<void>
 		exists: (repository: Repository, name: string) => Promise<boolean>
-		get: (repository: Repository, pullRequestId: string) => Promise<Branch>
+		get: (repository: Repository, name: string) => Promise<Branch>
 		create: (rawBranch: BranchRest) => Promise<Branch>
 	}
 
 	class CommentDb {
 		db: FileDb
 		ready: Promise<void>
-		get: (repository: Repository, pullRequestId: string) => Promise<Comment>
-		create: (repository: Repository, pullRequestId: string, comment: Comment) => Promise<Comment>
+		get: (repository: Repository, name: string) => Promise<Comment>
+		create: (repository: Repository, name: string, comment: Comment) => Promise<Comment>
 	}
 
 	class PullRequestDb {
 		db: FileDb
 		ready: Promise<void>
-		exists: (repository: Repository, pullRequestId: string) => Promise<boolean>
-		get: (repository: Repository, pullRequestId: string) => Promise<PullRequest>
+		exists: (repository: Repository, name: string) => Promise<boolean>
+		get: (repository: Repository, name: string) => Promise<PullRequest>
 		create: (rawPullRequest: PullRequestRest, base: BaseBranch) => Promise<PullRequest>
 	}
 
@@ -64,12 +64,13 @@ declare namespace Core {
 	}
 
 	interface Repository {
-		name: string
-		slug: string
+		repo: string
+		project: string
+		type: string
 	}
 
 	interface PullRequestRest {
-		pullRequestId: string
+		name: string
 		repository: Repository
 		report: Report
 	}
@@ -83,7 +84,7 @@ declare namespace Core {
 	}
 
 	interface PullRequest {
-		pullRequestId: string
+		name: string
 		repository: Repository
 		base: BaseBranch
 		id: Id

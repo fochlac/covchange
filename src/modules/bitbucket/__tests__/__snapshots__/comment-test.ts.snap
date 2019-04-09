@@ -20,11 +20,11 @@ Array [
 \`\`\`",
     },
     "headers": Object {
-      "Authorization": "Bearer OTQyODM5NTkyMzQ2OqjtV+lhUZPQdkGwO7kqarTLMxrB",
+      "Authorization": undefined,
     },
     "json": true,
-    "method": "POST",
-    "uri": "undefinedrest/api/1.0/slug/name/pull-requests/12345/comments/undefined",
+    "method": "post",
+    "uri": "undefined/rest/api/1.0/users/name/repos/slug/pull-requests/12345/comments/",
   },
 ]
 `;

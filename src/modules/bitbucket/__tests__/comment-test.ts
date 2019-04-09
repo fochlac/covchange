@@ -10,12 +10,15 @@ jest.mock('request-promise-native', () =>
 		.resolves(),
 )
 
+jest.mock('../../../utils/logger.ts', () => () => null)
+
 describe('diff-module', () => {
 	const report = createReportFromXML(readFileSync('./tests/sample_report.xml', { encoding: 'utf8' }))
 	const report2 = createReportFromXML(readFileSync('./tests/sample_report_2.xml', { encoding: 'utf8' }))
 	const repository = {
-		name: 'name',
-		slug: 'slug',
+		repo: 'name',
+		project: 'slug',
+		type: 'users',
 	}
 	const base = {
 		name: 'base',
@@ -27,7 +30,7 @@ describe('diff-module', () => {
 	const pr = {
 		reports: [report2],
 		repository,
-		pullRequestId: '12345',
+		name: '12345',
 		id: '1',
 		lastModified: 0,
 		base: {

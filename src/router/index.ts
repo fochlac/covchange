@@ -18,7 +18,7 @@ export const router = createRouter(
 			pullrequests: {
 				post: {
 					body: {
-						pullRequestId,
+						name: pullRequestId,
 						report,
 						repository,
 					},

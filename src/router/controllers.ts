@@ -20,7 +20,7 @@ export const addBranchReport = async (req, res) => {
 export const addPullRequestReport = async (req, res) => {
 	try {
 		const pullRequestRest = req.body as Core.PullRequestRest
-		const action = (await pullRequestDb.exists(pullRequestRest.repository, pullRequestRest.pullRequestId))
+		const action = (await pullRequestDb.exists(pullRequestRest.repository, pullRequestRest.name))
 			? pullRequestDb.update
 			: pullRequestDb.create
 		const base = await getBaseBranchFromPullrequest(pullRequestRest)

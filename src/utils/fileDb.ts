@@ -1,4 +1,4 @@
-import * as clone from 'clone'
+const clone = require('clone')
 
 import { moveSync as moveSyncRaw, outputFile as outputFileRaw, pathExists as pathExistsRaw, readJSON as readJSONRaw } from 'fs-extra'
 

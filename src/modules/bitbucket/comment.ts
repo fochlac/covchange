@@ -1,16 +1,15 @@
-import * as request from 'request-promise-native'
-
-import { Bitbucket } from './api'
+import { Bitbucket } from './bitbucket'
 import { commentDb } from '../db/comments'
 import { diffReports } from '../diff/diff'
 
-const createApiSlug = ({ repository: { slug, name }, pullRequestId }: Core.PullRequest, commentId?: number) =>
-	`${slug}/repos/${name}/pull-requests/${pullRequestId}/comments/${commentId || ''}`
+function createApiSlug({ repository: { type, repo, project }, name }: Core.PullRequest, commentId?: number) {
+	return `${type}/${repo}/repos/${project}/pull-requests/${name}/comments/${commentId || ''}`
+}
 
 export async function submitResults(base: Core.Branch, pr: Core.PullRequest) {
 	const diff = diffReports(base.reports[0], pr.reports[0])
 	const comment = createCommentObject(diff)
-	const existingComment = await commentDb.get(pr.repository, pr.pullRequestId)
+	const existingComment = await commentDb.get(pr.repository, pr.name)
 
 	return existingComment ? updateComment(comment, existingComment, pr) : createComment(comment, pr)
 }
@@ -20,7 +19,7 @@ function updateComment(comment, existingComment, pr) {
 }
 
 function createComment(comment, pr) {
-	return Bitbucket.put(createApiSlug(pr), comment)
+	return Bitbucket.post(createApiSlug(pr), comment)
 }
 
 const symbolsMap = {

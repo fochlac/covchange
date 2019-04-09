@@ -1,24 +1,25 @@
 import * as request from 'request-promise-native'
 
-import { Bitbucket } from './api'
+import { Bitbucket } from './bitbucket'
 import error from '../../utils/error'
 
 const { internalError } = error('bitbucket comment:')
 
-const baseUrl = ({ repository: { slug, name }, pullRequestId }: Core.PullRequestRest) =>
-	`${slug}/repos/${name}/pull-requests/${pullRequestId}/`
+const baseUrl = ({ repository: { type, repo, project }, name }: Core.PullRequestRest) =>
+	`${type}/${repo}/repos/${project}/pull-requests/${name}/`
 
 export async function getBaseBranchFromPullrequest(pullRequest: Core.PullRequestRest): Promise<Core.BaseBranch> {
 	try {
 		const { toRef } = await Bitbucket.get(baseUrl(pullRequest))
 
-		const slug = toRef.repository.project.type === 'NORMAL' ? 'projects' : 'users'
+		const type = toRef.repository.project.type === 'NORMAL' ? 'projects' : 'users'
 
 		return {
 			name: toRef.displayId,
 			repository: {
-				name: toRef.repository.slug,
-				slug: `${slug}/${toRef.repository.project.key}`,
+				repo: toRef.repository.slug,
+				type,
+				project: toRef.repository.project.key,
 			},
 		}
 	} catch (err) {
