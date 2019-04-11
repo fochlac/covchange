@@ -1,5 +1,5 @@
 {
-	"name": "covchange",
+	"name": "cov-watcher",
 	"version": "1.0.0",
 	"description": "A server to diff clover coverage xmls and post results to bitbucket",
 	"main": "index.ts",
