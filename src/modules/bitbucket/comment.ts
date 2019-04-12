@@ -2,6 +2,8 @@ import { Bitbucket } from './bitbucket'
 import { commentDb } from '../db/comments'
 import { diffReports } from '../diff/diff'
 
+const svgBaseUrl = `http://${global.address}:${global.port}/svg`
+
 function createApiSlug({ repository: { type, repo, project }, name }: Core.PullRequest, commentId?: number) {
 	return `${type}/${repo}/repos/${project}/pull-requests/${name}/comments/${commentId || ''}`
 }
@@ -23,28 +25,40 @@ function createComment(comment, pr) {
 }
 
 const symbolsMap = {
-	critical: ':u7981:',
-	low: ':u6709:',
-	medium: ':symbols:',
-	high: ':u6307:',
+	critical: `![critical](${svgBaseUrl}/close-round.svg)`,
+	low: `![warning](${svgBaseUrl}/exclamation-triangle.svg)`,
+	medium: ':ok:',
+	high: `![good](${svgBaseUrl}/check-mark-circle.svg)`,
+	optimal: ':100:',
 }
 
 const getSymbolFromCoverage = (metrics: Core.Metrics) => {
-	const { statementCov, statements } = metrics
-	const stringcode = statementCov > 85 ? 'high' : statementCov > 70 || statements <= 5 ? 'medium' : statementCov > 50 ? 'low' : 'critical'
+	const { statementCov, statements, conditionalCov } = metrics
+	let stringcode = 'critical'
+	if (statementCov >= 90 && conditionalCov > 80) {
+		stringcode = 'optimal'
+	} else if (statementCov >= 80 && conditionalCov > 70) {
+		stringcode = 'high'
+	} else if (statementCov >= 70 || statements <= 5) {
+		stringcode = 'medium'
+	} else if (statementCov > 50) {
+		stringcode = 'low'
+	}
+
 	return symbolsMap[stringcode]
 }
 
 function createCommentObject(diff: Core.DiffReport) {
 	const totalDiff = diff.total.diff.statementCov
-	const changedFilesHeader = (Object.keys(diff.changed).length && ['| File | Change | Coverage |', '|---|---|---|']) || []
+	const changedFilesHeader = (Object.keys(diff.changed).length && ['| Quality | File | Change | Coverage |', '|---|---|---|---|']) || []
 	const deletedFilesHeader = (diff.deleted.length && ['##### Deleted files', '```diff']) || []
 	const deletedFilesFooter = (diff.deleted.length && ['```']) || []
+	const covSymbol = totalDiff < 0 ? `![decrease](${svgBaseUrl}/long-arrow-down.svg)` : `![improvement](${svgBaseUrl}/long-arrow-up.svg)`
 
 	const lines = [
 		'### Coverage Statistics',
-		`#### ${totalDiff <= 0 ? ':red_circle:' : ':large_blue_circle:'} This pull request will ` +
-			`${totalDiff > 0 ? 'increase' : 'decrease'} total coverage by ${Math.abs(totalDiff)}% to ${diff.total.changed.statementCov}%.`,
+		`#### ${covSymbol} This pull request will ${totalDiff > 0 ? 'increase' : 'decrease'}` +
+			` total coverage by ${Math.abs(totalDiff)}% to ${diff.total.changed.statementCov}%.`,
 		'',
 		...changedFilesHeader,
 		...Object.keys(diff.changed)
@@ -64,14 +78,21 @@ function createCommentObject(diff: Core.DiffReport) {
 }
 
 function newFileInfo(name: string, metrics: Core.Metrics) {
-	return `| ${name} | :sparkles: *new* | ${getSymbolFromCoverage(metrics)} ${metrics.statementCov}% |`
+	return `| ${getSymbolFromCoverage(metrics)} | ${name} | ![new](${svgBaseUrl}/magic.svg) *new* | ${metrics.statementCov}% |`
 }
 
 function deletedFileInfo(name: string) {
 	return `- ${name}`
 }
 
-function changedFileInfo(name: string, diff: Core.Diff) {
-	const covSymbol = diff.diff.statementCov < 0 ? ':red_circle:' : ':large_blue_circle:'
-	return `| ${name} | ${covSymbol} ${diff.diff.statementCov}% | ${getSymbolFromCoverage(diff.changed)} ${diff.changed.statementCov}% |`
+function changedFileInfo(name: string, { diff, changed }: Core.Diff) {
+	const covSymbol =
+		diff.statementCov < 0 ? `![decrease](${svgBaseUrl}/long-arrow-down.svg)` : `![improvement](${svgBaseUrl}/long-arrow-up.svg)`
+	const { statements, statementCov } = changed
+	const changedLineCov = Math.round((statements * statementCov) / 100)
+	const origLineCov = changedLineCov - diff.statements
+	return (
+		`| ${getSymbolFromCoverage(changed)} | ${name} | ${covSymbol} ${diff.statementCov}% (${origLineCov} ` +
+		`:arrow_right:  ${changedLineCov}) | ${statementCov}% (${changedLineCov}/${statements}) |`
+	)
 }

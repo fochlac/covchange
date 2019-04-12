@@ -7,13 +7,13 @@ Array [
       "text": "### Coverage Statistics
 #### :large_blue_circle: This pull request will increase total coverage by 2.4% to 87.2%.
 
-| File | Change | Coverage |
-|---|---|---|
-| orders/app/components/orders-subviews.js | :red_circle: -13% | :u6709: 68% |
-| orders/app/index.js | :large_blue_circle: 7.7% | :u7981: 7.7% |
-| orders/app/components/orders-filter-bar.js | :large_blue_circle: 12.8% | :u6307: 96.4% |
-| orders/app/components/order-tours-tab/order-tours-table-renderer.js | :large_blue_circle: 44.4% | :u7981: 44.4% |
-| orders/app/components/order-tours-tab/order-tours-table-core.js | :sparkles: *new* | :u6709: 54.5% |
+| Quality | File | Change | Coverage |
+|---|---|---|---|
+| :warning: | orders/app/components/orders-subviews.js | :red_circle: -13% (13 :arrow_right:  17) | 68% (17/25) |
+| :red_circle: | orders/app/index.js | :large_blue_circle: 7.7% (0 :arrow_right:  1) | 7.7% (1/13) |
+| :ok: | orders/app/components/orders-filter-bar.js | :large_blue_circle: 12.8% (65 :arrow_right:  53) | 96.4% (53/55) |
+| :red_circle: | orders/app/components/order-tours-tab/order-tours-table-renderer.js | :large_blue_circle: 44.4% (10 :arrow_right:  20) | 44.4% (20/45) |
+| :warning: | orders/app/components/order-tours-tab/order-tours-table-core.js | :sparkles: *new* | 54.5% |
 ##### Deleted files
 \`\`\`diff
 - orders/module.js
