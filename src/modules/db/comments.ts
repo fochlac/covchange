@@ -17,12 +17,12 @@ class CommentDb implements Core.CommentDb {
 		return this.db.get(id)
 	}
 
-	async create(repository, name, { commentId }): Promise<Core.Comment> {
+	async create(repository, name, { commentId, version }): Promise<Core.Comment> {
 		await this.ready
 		const id = forge.pullRequestId({ name, repository })
 
-		await this.db.set(id, { id, commentId })
-		return { id, commentId }
+		await this.db.set(id, { id, commentId, version })
+		return { id, commentId, version }
 	}
 }
 

@@ -6,7 +6,7 @@ import error from '../../utils/error'
 const { internalError } = error('bitbucket comment:')
 
 const baseUrl = ({ repository: { type, repo, project }, name }: Core.PullRequestRest) =>
-	`${type}/${repo}/repos/${project}/pull-requests/${name}/`
+	`${type}/${project}/repos/${repo}/pull-requests/${name}/`
 
 export async function getBaseBranchFromPullrequest(pullRequest: Core.PullRequestRest): Promise<Core.BaseBranch> {
 	try {

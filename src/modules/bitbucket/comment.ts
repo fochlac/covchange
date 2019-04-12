@@ -5,23 +5,25 @@ import { diffReports } from '../diff/diff'
 const svgBaseUrl = `http://${global.address}:${global.port}/svg`
 
 function createApiSlug({ repository: { type, repo, project }, name }: Core.PullRequest, commentId?: number) {
-	return `${type}/${repo}/repos/${project}/pull-requests/${name}/comments/${commentId || ''}`
+	return `${type}/${project}/repos/${repo}/pull-requests/${name}/comments/${commentId || ''}`
 }
 
 export async function submitResults(base: Core.Branch, pr: Core.PullRequest) {
 	const diff = diffReports(base.reports[0], pr.reports[0])
-	const comment = createCommentObject(diff)
 	const existingComment = await commentDb.get(pr.repository, pr.name)
+	const comment = createCommentObject(diff, existingComment)
 
 	return existingComment ? updateComment(comment, existingComment, pr) : createComment(comment, pr)
 }
 
 function updateComment(comment, existingComment, pr) {
 	return Bitbucket.put(createApiSlug(pr, existingComment.commentId), comment)
+		.then(({ version }) => commentDb.create(pr.repository, pr.name, {commentId: existingComment.commentId, version}))
 }
 
 function createComment(comment, pr) {
 	return Bitbucket.post(createApiSlug(pr), comment)
+		.then(({ id, version }) => commentDb.create(pr.repository, pr.name, {commentId: id, version}))
 }
 
 const symbolsMap = {
@@ -33,11 +35,11 @@ const symbolsMap = {
 }
 
 const getSymbolFromCoverage = (metrics: Core.Metrics) => {
-	const { statementCov, statements, conditionalCov } = metrics
+	const { statementCov, statements, conditionalCov, conditionals } = metrics
 	let stringcode = 'critical'
-	if (statementCov >= 90 && conditionalCov > 80) {
+	if (statementCov >= 90 && (conditionalCov > 75 || conditionals === 0) ) {
 		stringcode = 'optimal'
-	} else if (statementCov >= 80 && conditionalCov > 70) {
+	} else if (statementCov >= 80 && (conditionalCov > 50 || conditionals <= 1) ) {
 		stringcode = 'high'
 	} else if (statementCov >= 70 || statements <= 5) {
 		stringcode = 'medium'
@@ -48,7 +50,7 @@ const getSymbolFromCoverage = (metrics: Core.Metrics) => {
 	return symbolsMap[stringcode]
 }
 
-function createCommentObject(diff: Core.DiffReport) {
+function createCommentObject(diff: Core.DiffReport, comment: Core.Comment) {
 	const totalDiff = diff.total.diff.statementCov
 	const changedFilesHeader = (Object.keys(diff.changed).length && ['| Quality | File | Change | Coverage |', '|---|---|---|---|']) || []
 	const deletedFilesHeader = (diff.deleted.length && ['##### Deleted files', '```diff']) || []
@@ -57,12 +59,12 @@ function createCommentObject(diff: Core.DiffReport) {
 
 	const lines = [
 		'### Coverage Statistics',
-		`#### ${covSymbol} This pull request will ${totalDiff > 0 ? 'increase' : 'decrease'}` +
+		`#### ${covSymbol} This pull request will ${totalDiff > 0 ? 'decrease' : 'increase'}` +
 			` total coverage by ${Math.abs(totalDiff)}% to ${diff.total.changed.statementCov}%.`,
 		'',
 		...changedFilesHeader,
 		...Object.keys(diff.changed)
-			.sort((a, b) => diff.changed[a].diff.statementCov - diff.changed[b].diff.statementCov)
+			.sort((a, b) => diff.changed[a].changed.statementCov - diff.changed[b].changed.statementCov)
 			.slice(0, 10)
 			.map(name => changedFileInfo(name, diff.changed[name])),
 		...Object.keys(diff.new)
@@ -74,25 +76,22 @@ function createCommentObject(diff: Core.DiffReport) {
 		...deletedFilesFooter,
 	]
 
-	return { text: lines.join('\n') }
+	return { text: lines.join('\n'), version: comment.version }
 }
 
 function newFileInfo(name: string, metrics: Core.Metrics) {
-	return `| ${getSymbolFromCoverage(metrics)} | ${name} | ![new](${svgBaseUrl}/magic.svg) *new* | ${metrics.statementCov}% |`
+	return `| ${getSymbolFromCoverage(metrics)} | ${name} | ![new](${svgBaseUrl}/magic.svg) *new* | ${Math.round(metrics.statementCov)}% (${metrics.coveredStatements}/${metrics.statements}) |`
 }
 
 function deletedFileInfo(name: string) {
 	return `- ${name}`
 }
 
-function changedFileInfo(name: string, { diff, changed }: Core.Diff) {
+function changedFileInfo(name: string, { diff, changed, original }: Core.Diff) {
 	const covSymbol =
 		diff.statementCov < 0 ? `![decrease](${svgBaseUrl}/long-arrow-down.svg)` : `![improvement](${svgBaseUrl}/long-arrow-up.svg)`
-	const { statements, statementCov } = changed
-	const changedLineCov = Math.round((statements * statementCov) / 100)
-	const origLineCov = changedLineCov - diff.statements
 	return (
-		`| ${getSymbolFromCoverage(changed)} | ${name} | ${covSymbol} ${diff.statementCov}% (${origLineCov} ` +
-		`:arrow_right:  ${changedLineCov}) | ${statementCov}% (${changedLineCov}/${statements}) |`
+		`| ${getSymbolFromCoverage(changed)} | ${name} | ${covSymbol} ${Math.round(diff.statementCov)}% (${original.coveredStatements} ` +
+		`:arrow_right:  ${changed.coveredStatements}) | ${Math.round(changed.statementCov)}% (${changed.coveredStatements}/${changed.statements}) |`
 	)
 }

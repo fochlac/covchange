@@ -30,7 +30,7 @@ export const addPullRequestReport = async (req, res) => {
 
 		res.status(200).send({ success: true })
 
-		if (!baseBranch) return Promise.reject('Base branch is not in the database.')
+		if (!baseBranch) throw('Base branch is not in the database.')
 		submitResults(baseBranch, pr)
 	} catch (err) {
 		internalError(2, 'Error handling pull request:')(err)

@@ -50,6 +50,7 @@ declare namespace Core {
 	interface Comment {
 		id: Id
 		commentId: Id
+		version: number
 	}
 
 	interface BranchRest {
@@ -113,6 +114,8 @@ declare namespace Core {
 	interface Metrics {
 		conditionals: number
 		statements: number
+		coveredStatements: number
+		coveredConditionals: number
 		statementCov: number
 		conditionalCov: number
 	}

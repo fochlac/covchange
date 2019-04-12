@@ -56,7 +56,9 @@ function parseMetrics({ statements, coveredstatements, conditionals, coveredcond
 	return {
 		statements,
 		conditionals,
-		statementCov: (statements && Math.round((coveredstatements / statements) * 1000)) / 10 || 0,
-		conditionalCov: (conditionals && Math.round((coveredconditionals / conditionals) * 1000)) / 10 || 0,
+		coveredStatements: coveredstatements,
+		coveredConditionals: coveredconditionals,
+		statementCov: (statements && Math.round((coveredstatements / statements) * 10000)) / 100 || 0,
+		conditionalCov: (conditionals && Math.round((coveredconditionals / conditionals) * 10000)) / 100 || 0,
 	}
 }
