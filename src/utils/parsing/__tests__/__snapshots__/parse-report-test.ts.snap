@@ -7,6 +7,8 @@ Object {
       "metrics": Object {
         "conditionalCov": 0,
         "conditionals": 35,
+        "coveredConditionals": 0,
+        "coveredStatements": 0,
         "statementCov": 0,
         "statements": 34,
       },
@@ -16,6 +18,8 @@ Object {
       "metrics": Object {
         "conditionalCov": 0,
         "conditionals": 26,
+        "coveredConditionals": 0,
+        "coveredStatements": 0,
         "statementCov": 0,
         "statements": 8,
       },
@@ -25,6 +29,8 @@ Object {
       "metrics": Object {
         "conditionalCov": 0,
         "conditionals": 35,
+        "coveredConditionals": 0,
+        "coveredStatements": 0,
         "statementCov": 0,
         "statements": 35,
       },
@@ -34,6 +40,8 @@ Object {
       "metrics": Object {
         "conditionalCov": 0,
         "conditionals": 41,
+        "coveredConditionals": 0,
+        "coveredStatements": 0,
         "statementCov": 0,
         "statements": 27,
       },
@@ -41,9 +49,11 @@ Object {
     },
     "orders/app/components/orders-filter-bar.js": Object {
       "metrics": Object {
-        "conditionalCov": 31.8,
+        "conditionalCov": 31.82,
         "conditionals": 22,
-        "statementCov": 83.6,
+        "coveredConditionals": 7,
+        "coveredStatements": 56,
+        "statementCov": 83.58,
         "statements": 67,
       },
       "name": "orders-filter-bar.js",
@@ -52,7 +62,9 @@ Object {
       "metrics": Object {
         "conditionalCov": 100,
         "conditionals": 17,
-        "statementCov": 81,
+        "coveredConditionals": 17,
+        "coveredStatements": 17,
+        "statementCov": 80.95,
         "statements": 21,
       },
       "name": "orders-subviews.js",
@@ -61,6 +73,8 @@ Object {
       "metrics": Object {
         "conditionalCov": 0,
         "conditionals": 0,
+        "coveredConditionals": 0,
+        "coveredStatements": 6,
         "statementCov": 100,
         "statements": 6,
       },
@@ -70,6 +84,8 @@ Object {
       "metrics": Object {
         "conditionalCov": 50,
         "conditionals": 2,
+        "coveredConditionals": 1,
+        "coveredStatements": 5,
         "statementCov": 100,
         "statements": 5,
       },
@@ -77,9 +93,11 @@ Object {
     },
     "orders/app/components/orders-tab/orders-tab.js": Object {
       "metrics": Object {
-        "conditionalCov": 83.3,
+        "conditionalCov": 83.33,
         "conditionals": 6,
-        "statementCov": 65.4,
+        "coveredConditionals": 5,
+        "coveredStatements": 17,
+        "statementCov": 65.38,
         "statements": 26,
       },
       "name": "orders-tab.js",
@@ -88,6 +106,8 @@ Object {
       "metrics": Object {
         "conditionalCov": 100,
         "conditionals": 17,
+        "coveredConditionals": 17,
+        "coveredStatements": 47,
         "statementCov": 100,
         "statements": 47,
       },
@@ -97,6 +117,8 @@ Object {
       "metrics": Object {
         "conditionalCov": 0,
         "conditionals": 4,
+        "coveredConditionals": 0,
+        "coveredStatements": 0,
         "statementCov": 0,
         "statements": 12,
       },
@@ -106,6 +128,8 @@ Object {
       "metrics": Object {
         "conditionalCov": 0,
         "conditionals": 4,
+        "coveredConditionals": 0,
+        "coveredStatements": 0,
         "statementCov": 0,
         "statements": 1,
       },
@@ -119,6 +143,8 @@ Object {
           "metrics": Object {
             "conditionalCov": 0,
             "conditionals": 4,
+            "coveredConditionals": 0,
+            "coveredStatements": 0,
             "statementCov": 0,
             "statements": 1,
           },
@@ -128,6 +154,8 @@ Object {
       "metrics": Object {
         "conditionalCov": 0,
         "conditionals": 4,
+        "coveredConditionals": 0,
+        "coveredStatements": 0,
         "statementCov": 0,
         "statements": 1,
       },
@@ -139,6 +167,8 @@ Object {
           "metrics": Object {
             "conditionalCov": 0,
             "conditionals": 4,
+            "coveredConditionals": 0,
+            "coveredStatements": 0,
             "statementCov": 0,
             "statements": 12,
           },
@@ -148,6 +178,8 @@ Object {
       "metrics": Object {
         "conditionalCov": 0,
         "conditionals": 4,
+        "coveredConditionals": 0,
+        "coveredStatements": 0,
         "statementCov": 0,
         "statements": 12,
       },
@@ -157,9 +189,11 @@ Object {
       "files": Array [
         Object {
           "metrics": Object {
-            "conditionalCov": 31.8,
+            "conditionalCov": 31.82,
             "conditionals": 22,
-            "statementCov": 83.6,
+            "coveredConditionals": 7,
+            "coveredStatements": 56,
+            "statementCov": 83.58,
             "statements": 67,
           },
           "name": "orders-filter-bar.js",
@@ -168,7 +202,9 @@ Object {
           "metrics": Object {
             "conditionalCov": 100,
             "conditionals": 17,
-            "statementCov": 81,
+            "coveredConditionals": 17,
+            "coveredStatements": 17,
+            "statementCov": 80.95,
             "statements": 21,
           },
           "name": "orders-subviews.js",
@@ -177,6 +213,8 @@ Object {
           "metrics": Object {
             "conditionalCov": 100,
             "conditionals": 17,
+            "coveredConditionals": 17,
+            "coveredStatements": 47,
             "statementCov": 100,
             "statements": 47,
           },
@@ -184,9 +222,11 @@ Object {
         },
       ],
       "metrics": Object {
-        "conditionalCov": 73.2,
+        "conditionalCov": 73.21,
         "conditionals": 56,
-        "statementCov": 88.9,
+        "coveredConditionals": 41,
+        "coveredStatements": 120,
+        "statementCov": 88.89,
         "statements": 135,
       },
       "name": "orders.app.components",
@@ -197,6 +237,8 @@ Object {
           "metrics": Object {
             "conditionalCov": 0,
             "conditionals": 35,
+            "coveredConditionals": 0,
+            "coveredStatements": 0,
             "statementCov": 0,
             "statements": 34,
           },
@@ -206,6 +248,8 @@ Object {
           "metrics": Object {
             "conditionalCov": 0,
             "conditionals": 26,
+            "coveredConditionals": 0,
+            "coveredStatements": 0,
             "statementCov": 0,
             "statements": 8,
           },
@@ -215,6 +259,8 @@ Object {
           "metrics": Object {
             "conditionalCov": 0,
             "conditionals": 35,
+            "coveredConditionals": 0,
+            "coveredStatements": 0,
             "statementCov": 0,
             "statements": 35,
           },
@@ -224,6 +270,8 @@ Object {
           "metrics": Object {
             "conditionalCov": 0,
             "conditionals": 41,
+            "coveredConditionals": 0,
+            "coveredStatements": 0,
             "statementCov": 0,
             "statements": 27,
           },
@@ -233,6 +281,8 @@ Object {
       "metrics": Object {
         "conditionalCov": 0,
         "conditionals": 137,
+        "coveredConditionals": 0,
+        "coveredStatements": 0,
         "statementCov": 0,
         "statements": 104,
       },
@@ -244,6 +294,8 @@ Object {
           "metrics": Object {
             "conditionalCov": 0,
             "conditionals": 0,
+            "coveredConditionals": 0,
+            "coveredStatements": 6,
             "statementCov": 100,
             "statements": 6,
           },
@@ -253,6 +305,8 @@ Object {
           "metrics": Object {
             "conditionalCov": 50,
             "conditionals": 2,
+            "coveredConditionals": 1,
+            "coveredStatements": 5,
             "statementCov": 100,
             "statements": 5,
           },
@@ -260,9 +314,11 @@ Object {
         },
         Object {
           "metrics": Object {
-            "conditionalCov": 83.3,
+            "conditionalCov": 83.33,
             "conditionals": 6,
-            "statementCov": 65.4,
+            "coveredConditionals": 5,
+            "coveredStatements": 17,
+            "statementCov": 65.38,
             "statements": 26,
           },
           "name": "orders-tab.js",
@@ -271,16 +327,20 @@ Object {
       "metrics": Object {
         "conditionalCov": 75,
         "conditionals": 8,
-        "statementCov": 75.7,
+        "coveredConditionals": 6,
+        "coveredStatements": 28,
+        "statementCov": 75.68,
         "statements": 37,
       },
       "name": "orders.app.components.orders-tab",
     },
   },
   "metrics": Object {
-    "conditionalCov": 72.9,
+    "conditionalCov": 72.85,
     "conditionals": 2479,
-    "statementCov": 84.8,
+    "coveredConditionals": 1806,
+    "coveredStatements": 3428,
+    "statementCov": 84.81,
     "statements": 4042,
   },
   "timestamp": 1543960595393,

@@ -16,9 +16,7 @@ import * as fs from 'fs'
  *  10: full trace: (requests objects, etc)
  *
  **/
-
 let currentDate = getDate().day
-
 if (!fs.existsSync(global.appRoot + 'log')) {
 	fs.mkdirSync(global.appRoot + 'log')
 }

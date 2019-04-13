@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`get-base-branch should create a get request object using the url 1`] = `
+Array [
+  Array [
+    Object {
+      "headers": Object {
+        "Authorization": "testNonsenseKey",
+      },
+      "json": true,
+      "method": "get",
+      "uri": "http://test.bitbucket.server:8080/rest/api/1.0/testurl",
+    },
+  ],
+]
+`;
+
+exports[`get-base-branch should create a post request object using the url 1`] = `
+Array [
+  Array [
+    Object {
+      "body": Object {
+        "test": "test",
+      },
+      "headers": Object {
+        "Authorization": "testNonsenseKey",
+      },
+      "json": true,
+      "method": "put",
+      "uri": "http://test.bitbucket.server:8080/rest/api/1.0/testurl",
+    },
+  ],
+]
+`;
+
+exports[`get-base-branch should create a put request object using the url 1`] = `
+Array [
+  Array [
+    Object {
+      "body": Object {
+        "test": "test",
+      },
+      "headers": Object {
+        "Authorization": "testNonsenseKey",
+      },
+      "json": true,
+      "method": "put",
+      "uri": "http://test.bitbucket.server:8080/rest/api/1.0/testurl",
+    },
+  ],
+]
+`;

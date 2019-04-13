@@ -6,14 +6,16 @@ const symbolsMap = {
 	medium: `![ok](${svgBaseUrl}/ok.svg)`,
 	high: `![good](${svgBaseUrl}/good.svg)`,
 	optimal: `![top](${svgBaseUrl}/top.svg)`,
+	decrease: `![decrease](${svgBaseUrl}/long-arrow-down.svg)`,
+	increase: `![improvement](${svgBaseUrl}/long-arrow-up.svg)`,
+	new: `![new](${svgBaseUrl}/magic.svg)`,
 }
 
 export function createCommentObject(diff: Core.DiffReport, comment?: Core.Comment): Core.CommentRest {
 	const totalDiff = diff.total.diff.statementCov
 	const changedFilesHeader = (Object.keys(diff.changed).length && ['| Quality | File | Change | Coverage |', '|---|---|---|---|']) || []
-	const deletedFilesHeader = (diff.deleted.length && ['##### Deleted files', '```diff']) || []
-	const deletedFilesFooter = (diff.deleted.length && ['```']) || []
-	const covSymbol = totalDiff < 0 ? `![decrease](${svgBaseUrl}/long-arrow-down.svg)` : `![improvement](${svgBaseUrl}/long-arrow-up.svg)`
+	const deletedFiles = diff.deleted.length ? ['##### Deleted files', '```diff', ...diff.deleted.map(name => `- ${name}`), '```'] : []
+	const covSymbol = totalDiff < 0 ? symbolsMap.decrease : symbolsMap.increase
 
 	const lines = [
 		'### Coverage Statistics',
@@ -29,33 +31,24 @@ export function createCommentObject(diff: Core.DiffReport, comment?: Core.Commen
 			.sort((a, b) => diff.new[a].statementCov - diff.new[b].statementCov)
 			.slice(0, 10)
 			.map(name => newFileInfo(name, diff.new[name])),
-		...deletedFilesHeader,
-		...diff.deleted.map(deletedFileInfo),
-		...deletedFilesFooter,
+		...deletedFiles,
 	]
 
 	return { text: lines.join('\n'), version: comment && comment.version }
 }
 
 function newFileInfo(name: string, metrics: Core.Metrics) {
-	return `| ${getSymbolFromCoverage(metrics)} | ${name} | ![new](${svgBaseUrl}/magic.svg) *new* | ${Math.round(metrics.statementCov)}% (${
-		metrics.coveredStatements
-	}/${metrics.statements}) |`
+	const newCoverageCell = `${Math.round(metrics.statementCov)}% (${metrics.coveredStatements}/${metrics.statements})`
+
+	return `| ${getSymbolFromCoverage(metrics)} | ${name} | ${symbolsMap.new} *new* | ${newCoverageCell} |`
 }
 
-function deletedFileInfo(name: string) {
-	return `- ${name}`
-}
+function changedFileInfo(name: string, { diff: { statementCov }, changed, changed: { coveredStatements }, original }: Core.Diff) {
+	const covSymbol = statementCov < 0 ? symbolsMap.decrease : symbolsMap.increase
+	const diffCell = `${covSymbol} ${Math.round(statementCov)}% (${original.coveredStatements}:arrow_right:${coveredStatements})`
+	const newCoverageCell = `${Math.round(statementCov)}% (${coveredStatements}/${changed.statements})`
 
-function changedFileInfo(name: string, { diff, changed, original }: Core.Diff) {
-	const covSymbol =
-		diff.statementCov < 0 ? `![decrease](${svgBaseUrl}/long-arrow-down.svg)` : `![improvement](${svgBaseUrl}/long-arrow-up.svg)`
-	return (
-		`| ${getSymbolFromCoverage(changed)} | ${name} | ${covSymbol} ${Math.round(diff.statementCov)}% (${original.coveredStatements} ` +
-		`:arrow_right:  ${changed.coveredStatements}) | ${Math.round(changed.statementCov)}% (${changed.coveredStatements}/${
-			changed.statements
-		}) |`
-	)
+	return `| ${getSymbolFromCoverage(changed)} | ${name} | ${diffCell} | ${newCoverageCell} |`
 }
 
 const getSymbolFromCoverage = (metrics: Core.Metrics) => {

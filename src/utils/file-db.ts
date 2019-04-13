@@ -19,7 +19,10 @@ class FileDb {
 	constructor(path, initialState) {
 		this.content = initialState
 		this.path = path
-		this.highestIndex = Object.keys(initialState).length ? Math.max(...Object.keys(initialState).map(key => +key)) : 0
+		const numberedKeys = Object.keys(initialState)
+			.map(key => +key)
+			.filter(n => !isNaN(n))
+		this.highestIndex = numberedKeys.length ? Math.max(...numberedKeys) : 0
 	}
 
 	list() {

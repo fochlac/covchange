@@ -7,7 +7,7 @@ const Authorization = global.bitbucketKey
 const { internalError } = error('Bitbucket API call failed: ')
 
 export const Bitbucket = {
-	get: (url: string): Promise<any> => apiCall({ url }),
+	get: (url: string): Promise<any> => apiCall({ url, method: 'get' }),
 	put: (url: string, body: any): Promise<any> => apiCall({ method: 'put', url, body }),
 	post: (url: string, body: any): Promise<any> => apiCall({ method: 'post', url, body }),
 }

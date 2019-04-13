@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`get-base-branch should move old file if unreadable 1`] = `
+Array [
+  Array [
+    "/test/root/storage/name.ext",
+  ],
+]
+`;
+
+exports[`get-base-branch should move old file if unreadable 2`] = `
+Array [
+  Array [
+    "/test/root/storage/name.ext",
+    "utf8",
+  ],
+]
+`;
+
+exports[`get-base-branch should move old file if unreadable 3`] = `
+Array [
+  Array [
+    "/test/root/storage/name.ext",
+    "/test/root/storage/name_backup_1234567891011.json",
+  ],
+]
+`;
+
+exports[`get-base-branch should write stored data 1`] = `
+Array [
+  Array [
+    "/test/root/storage/name.ext",
+    "{
+  \\"test\\": \\"test\\",
+  \\"test2\\": \\"testdata\\"
+}",
+    "utf8",
+  ],
+]
+`;

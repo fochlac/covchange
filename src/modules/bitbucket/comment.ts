@@ -17,12 +17,12 @@ export async function writeReportToBitbucket(base: Core.Branch, pr: Core.PullReq
 
 function updateComment(comment: Core.CommentRest, existingComment: Core.Comment, pr: Core.PullRequest): Promise<Core.Comment> {
 	return Bitbucket.put(createApiSlug(pr, existingComment.commentId), comment).then(({ version }) =>
-		commentDb.create(pr.repository, pr.name, { commentId: existingComment.commentId, version }),
+		commentDb.set(pr.repository, pr.name, { commentId: existingComment.commentId, version }),
 	)
 }
 
 function createComment(comment: Core.CommentRest, pr: Core.PullRequest): Promise<Core.Comment> {
 	return Bitbucket.post(createApiSlug(pr), comment).then(({ id, version }: { id: number; version: number }) =>
-		commentDb.create(pr.repository, pr.name, { commentId: id.toString(), version }),
+		commentDb.set(pr.repository, pr.name, { commentId: id.toString(), version }),
 	)
 }

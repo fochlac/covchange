@@ -11,7 +11,7 @@
 	"author": "low@fochlac.com",
 	"license": "ISC",
 	"dependencies": {
-		"abstract-express-router": "^1.4.0",
+		"abstract-express-router": "^1.5.0",
 		"body-parser": "*",
 		"clone": "*",
 		"compression": "*",

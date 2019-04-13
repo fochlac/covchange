@@ -36,7 +36,7 @@ declare namespace Core {
 		db: FileDb
 		ready: Promise<void>
 		get: (repository: Repository, name: string) => Promise<Comment>
-		create: (repository: Repository, name: string, comment: Comment) => Promise<Comment>
+		set: (repository: Repository, name: string, comment: Comment) => Promise<Comment>
 	}
 
 	class PullRequestDb {

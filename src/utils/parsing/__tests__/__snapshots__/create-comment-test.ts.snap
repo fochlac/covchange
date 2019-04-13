@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`diff-module should create a comment from the diff report 1`] = `
+Object {
+  "text": "### Coverage Statistics
+#### ![improvement](http://undefined:undefined/svg/long-arrow-up.svg) This pull request will decrease total coverage by 2.3% to 87.19%.
+
+| Quality | File | Change | Coverage |
+|---|---|---|---|
+| ![critical](http://undefined:undefined/svg/critical.svg) | orders/app/index.js | ![improvement](http://undefined:undefined/svg/long-arrow-up.svg) 8% (0:arrow_right:1) | 8% (1/13) |
+| ![critical](http://undefined:undefined/svg/critical.svg) | orders/app/components/order-tours-tab/order-tours-table-renderer.js | ![improvement](http://undefined:undefined/svg/long-arrow-up.svg) 44% (0:arrow_right:20) | 44% (20/45) |
+| ![warning](http://undefined:undefined/svg/warning.svg) | orders/app/components/orders-subviews.js | ![decrease](http://undefined:undefined/svg/long-arrow-down.svg) -13% (17:arrow_right:17) | -13% (17/25) |
+| ![ok](http://undefined:undefined/svg/ok.svg) | orders/app/components/orders-filter-bar.js | ![improvement](http://undefined:undefined/svg/long-arrow-up.svg) 13% (56:arrow_right:53) | 13% (53/55) |
+| ![warning](http://undefined:undefined/svg/warning.svg) | orders/app/components/order-tours-tab/order-tours-table-core.js | ![new](http://undefined:undefined/svg/magic.svg) *new* | 55% (6/11) |
+##### Deleted files
+\`\`\`diff
+- orders/module.js
+\`\`\`",
+  "version": undefined,
+}
+`;

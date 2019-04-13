@@ -1,6 +1,6 @@
 import { branchDb } from '../modules/db/branches'
 import error from '../utils/error'
-import { getBaseBranchFromPullrequest } from '../modules/bitbucket/getBaseBranch'
+import { getBaseBranchFromPullrequest } from '../modules/bitbucket/get-base-branch'
 import { pullRequestDb } from '../modules/db/pull-requests'
 import { writeReportToBitbucket } from '../modules/bitbucket/comment'
 

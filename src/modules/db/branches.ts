@@ -1,7 +1,7 @@
 import { outputFile as outputFileRaw, readJSON as readJSONRaw } from 'fs-extra'
 
 import { forge } from '../../utils/forge'
-import initDb from '../../utils/fileDb'
+import initDb from '../../utils/file-db'
 
 const writeDiffs = (id, data) =>
 	outputFileRaw(global.storage + `branches/branch_${id}.json`, typeof data !== 'string' ? JSON.stringify(data) : data, 'utf8')

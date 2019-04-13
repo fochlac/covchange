@@ -1,5 +1,5 @@
 import { forge } from '../../utils/forge'
-import initDb from '../../utils/fileDb'
+import initDb from '../../utils/file-db'
 
 class CommentDb implements Core.CommentDb {
 	db: Core.FileDb
@@ -17,7 +17,7 @@ class CommentDb implements Core.CommentDb {
 		return this.db.get(id)
 	}
 
-	async create(repository, name, { commentId, version }): Promise<Core.Comment> {
+	async set(repository, name, { commentId, version }): Promise<Core.Comment> {
 		await this.ready
 		const id = forge.pullRequestId({ name, repository })
 

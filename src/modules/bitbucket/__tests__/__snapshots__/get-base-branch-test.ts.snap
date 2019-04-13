@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`get-base-branch should create a normal project type branch 1`] = `
+Object {
+  "name": "name",
+  "repository": Object {
+    "project": "project",
+    "repo": "repo",
+    "type": "projects",
+  },
+}
+`;
+
+exports[`get-base-branch should create a normal project type branch 2`] = `
+Object {
+  "name": "name",
+  "repository": Object {
+    "project": "project",
+    "repo": "repo",
+    "type": "users",
+  },
+}
+`;
