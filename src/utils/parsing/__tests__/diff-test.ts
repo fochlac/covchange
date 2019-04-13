@@ -1,4 +1,4 @@
-import { createReportFromXML } from '../../../utils/parse-report'
+import { createReportFromXML } from '../parse-report'
 import { diffReports } from '../diff'
 import { readFileSync } from 'fs'
 

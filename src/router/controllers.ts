@@ -2,7 +2,7 @@ import { branchDb } from '../modules/db/branches'
 import error from '../utils/error'
 import { getBaseBranchFromPullrequest } from '../modules/bitbucket/getBaseBranch'
 import { pullRequestDb } from '../modules/db/pull-requests'
-import { submitResults } from '../modules/bitbucket/comment'
+import { writeReportToBitbucket } from '../modules/bitbucket/comment'
 
 const { routerError, internalError } = error('controllers:')
 
@@ -30,8 +30,8 @@ export const addPullRequestReport = async (req, res) => {
 
 		res.status(200).send({ success: true })
 
-		if (!baseBranch) throw('Base branch is not in the database.')
-		submitResults(baseBranch, pr)
+		if (!baseBranch) throw 'Base branch is not in the database.'
+		writeReportToBitbucket(baseBranch, pr)
 	} catch (err) {
 		internalError(2, 'Error handling pull request:')(err)
 	}

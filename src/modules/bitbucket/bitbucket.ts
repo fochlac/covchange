@@ -38,5 +38,7 @@ function apiCall({ url, method, body }: ApiCallParameter): Promise<any> {
 		config.body = body
 	}
 
-	return request(config).catch(internalError(2, 'Error posting comment.'))
+	return request(config).catch(
+		internalError(2, `Error sending ${method}-request to ${url} with payload:\n ${JSON.stringify(body, null, 2)}`),
+	)
 }

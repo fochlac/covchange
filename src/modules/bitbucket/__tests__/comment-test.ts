@@ -1,7 +1,7 @@
-import { createReportFromXML } from '../../../utils/parse-report'
+import { createReportFromXML } from '../../../utils/parsing/parse-report'
 import { readFileSync } from 'fs'
 import request from 'request-promise-native'
-import { submitResults } from '../comment'
+import { writeReportToBitbucket } from '../comment'
 
 jest.mock('request-promise-native', () =>
 	require
@@ -40,7 +40,7 @@ describe('diff-module', () => {
 	}
 
 	it('should find the diff between the reports', () => {
-		return submitResults(base, pr).then(() => {
+		return writeReportToBitbucket(base, pr).then(() => {
 			expect(request.callCount).toEqual(1)
 			expect(request.firstCall.args).toMatchSnapshot()
 		})
