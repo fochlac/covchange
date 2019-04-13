@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xml:space="preserve" width="20px" height="20px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 640 640">
+ <g id="Layer_x0020_1">
+  <rect id="svg_12" height="470" width="400" y="100" x="120" fill="#bf212f"/>
+  <path class="fil0" fill="#f9a73e" d="M320 -0.0118112c176.707,0 320.012,143.305 320.012,320.012 0,176.707 -143.305,320.012 -320.012,320.012 -176.707,0 -320.012,-143.305 -320.012,-320.012 0,-176.707 143.305,-320.012 320.012,-320.012zm-45.5911 471.655l87.2609 0 0 77.1387 -87.2609 0 0 -77.1387zm87.2137 -39.5556l-87.19 0c-8.6694,-105.958 -26.8704,-153.203 -26.8704,-259.019 0,-39.0241 31.6421,-70.678 70.6662,-70.678 39.0241,0 70.678,31.6539 70.678,70.678 0,105.757 -18.4372,153.144 -27.2838,259.019z"/>
+ </g>
+</svg>

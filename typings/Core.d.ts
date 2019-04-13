@@ -53,6 +53,11 @@ declare namespace Core {
 		version: number
 	}
 
+	interface CommentRest {
+		text: string
+		version?: number
+	}
+
 	interface BranchRest {
 		name: string
 		repository: Repository
