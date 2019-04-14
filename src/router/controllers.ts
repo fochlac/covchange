@@ -29,9 +29,8 @@ export const addPullRequestReport = async (req, res) => {
 		if (!baseBranch) throw 'Base branch is not in the database.'
 		const pr = await action(pullRequestRest, base)
 
-		res.status(200).send({ success: true })
-
 		await writeReportToBitbucket(baseBranch, pr).catch(internalError(2, 'Error handling pull request:'))
+		res.status(200).send({ success: true })
 	} catch (err) {
 		routerError(2, res, 'Error adding pullrequest report.')(err)
 	}
