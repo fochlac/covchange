@@ -2,7 +2,7 @@ import clone from 'clone'
 const data = {}
 const instances = {}
 
-export default async id => {
+export default async function initDb(id) {
 	if (!instances[id]) {
 		data[id] = {}
 		instances[id] = {

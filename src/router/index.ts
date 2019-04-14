@@ -3,6 +3,7 @@ import { branch, pullRequestId, report, repository } from './validators'
 
 import { createRouter } from 'abstract-express-router'
 import { join } from 'path'
+import logger from '../utils/logger'
 import { parseReport } from './middleware'
 
 export const router = createRouter(
@@ -33,6 +34,6 @@ export const router = createRouter(
 		},
 	},
 	{
-		logLevel: 3,
+		logger: (lvl, message) => logger(Math.floor(lvl * 2.5), ' - router - ', message),
 	},
 )

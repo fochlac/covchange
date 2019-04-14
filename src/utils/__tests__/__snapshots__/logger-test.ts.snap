@@ -1,0 +1,123 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`logger create dir if missing ,write info to the output and console log 1`] = `
+Array [
+  Array [
+    "/test/root/log/output2009_1_14.txt",
+    Object {
+      "autoClose": true,
+      "encoding": "utf8",
+      "flags": "a",
+    },
+  ],
+]
+`;
+
+exports[`logger create dir if missing ,write info to the output and console log 2`] = `
+Array [
+  Array [
+    "2009_1_14 - 0:31:31 - 1 - testmessage1",
+  ],
+]
+`;
+
+exports[`logger create dir if missing ,write info to the output and console log 3`] = `
+Array [
+  Array [
+    "2009_1_14 - 0:31:31 - 1 - testmessage1",
+  ],
+]
+`;
+
+exports[`logger should parse errors , numbers and objects 1`] = `
+Array [
+  Array [
+    "2009_1_14 - 0:31:31 - 1 - testmessage1 1 
+Error: test
+    at Object.it (C:\\\\gitHub\\\\covwatcher\\\\src\\\\utils\\\\__tests__\\\\logger-test.ts:58:32)
+    at Object.asyncJestTest (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\jasmineAsyncInstall.js:102:37)
+    at resolve (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\queueRunner.js:43:12)
+    at new Promise (<anonymous>)
+    at mapper (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\queueRunner.js:26:19)
+    at promise.then (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\queueRunner.js:73:41)
+    at process._tickCallback (internal/process/next_tick.js:68:7) 
+{\\"test\\":\\"test\\"}",
+  ],
+]
+`;
+
+exports[`logger should parse errors , numbers and objects 2`] = `
+Array [
+  Array [
+    "2009_1_14 - 0:31:31 - 1 - testmessage1 1 
+Error: test
+    at Object.it (C:\\\\gitHub\\\\covwatcher\\\\src\\\\utils\\\\__tests__\\\\logger-test.ts:58:32)
+    at Object.asyncJestTest (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\jasmineAsyncInstall.js:102:37)
+    at resolve (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\queueRunner.js:43:12)
+    at new Promise (<anonymous>)
+    at mapper (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\queueRunner.js:26:19)
+    at promise.then (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\queueRunner.js:73:41)
+    at process._tickCallback (internal/process/next_tick.js:68:7) 
+{\\"test\\":\\"test\\"}",
+  ],
+]
+`;
+
+exports[`logger should parse errors , numbers and objects and pass on errors on failure 1`] = `
+Array [
+  Array [
+    "2009_1_14 - 0:31:31 - 1 - testmessage1 1 
+Error: test
+    at Object.it (C:\\\\gitHub\\\\covwatcher\\\\src\\\\utils\\\\__tests__\\\\logger-test.ts:73:32)
+    at Object.asyncJestTest (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\jasmineAsyncInstall.js:102:37)
+    at resolve (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\queueRunner.js:43:12)
+    at new Promise (<anonymous>)
+    at mapper (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\queueRunner.js:26:19)
+    at promise.then (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\queueRunner.js:73:41)
+    at process._tickCallback (internal/process/next_tick.js:68:7) 
+{\\"test\\":\\"test\\"} ",
+  ],
+]
+`;
+
+exports[`logger should parse errors , numbers and objects and pass on errors on failure 2`] = `
+Array [
+  Array [
+    "TypeError: Converting circular structure to JSON
+[object Object]",
+  ],
+  Array [
+    "2009_1_14 - 0:31:31 - 1 - testmessage1 1 
+Error: test
+    at Object.it (C:\\\\gitHub\\\\covwatcher\\\\src\\\\utils\\\\__tests__\\\\logger-test.ts:73:32)
+    at Object.asyncJestTest (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\jasmineAsyncInstall.js:102:37)
+    at resolve (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\queueRunner.js:43:12)
+    at new Promise (<anonymous>)
+    at mapper (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\queueRunner.js:26:19)
+    at promise.then (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\queueRunner.js:73:41)
+    at process._tickCallback (internal/process/next_tick.js:68:7) 
+{\\"test\\":\\"test\\"} ",
+  ],
+]
+`;
+
+exports[`logger write info to the output but not to console.log 1`] = `
+Array [
+  Array [
+    "/test/root/log/output2009_1_15.txt",
+    Object {
+      "autoClose": true,
+      "encoding": "utf8",
+      "flags": "a",
+    },
+  ],
+]
+`;
+
+exports[`logger write info to the output but not to console.log 2`] = `
+Array [
+  Array [
+    "2009_1_15 - 6:31:31 - 10 - testmessage1",
+  ],
+]
+`;

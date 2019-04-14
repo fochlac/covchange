@@ -1,4 +1,4 @@
-import * as fs from 'fs'
+import { createWriteStream, existsSync, mkdirSync } from 'fs'
 
 /**
  *   Log Levels:
@@ -17,11 +17,11 @@ import * as fs from 'fs'
  *
  **/
 let currentDate = getDate().day
-if (!fs.existsSync(global.appRoot + 'log')) {
-	fs.mkdirSync(global.appRoot + 'log')
+if (!existsSync(global.appRoot + 'log')) {
+	mkdirSync(global.appRoot + 'log')
 }
 
-let logStream = fs.createWriteStream(global.appRoot + 'log/output' + getDate().day + '.txt', {
+let logStream = createWriteStream(global.appRoot + 'log/output' + getDate().day + '.txt', {
 	flags: 'a',
 	encoding: 'utf8',
 	autoClose: true,
@@ -43,7 +43,7 @@ export default (level: number, ...message: any[]): void => {
 	if (currentDate !== getDate().day) {
 		currentDate = getDate().day
 		logStream.end()
-		logStream = fs.createWriteStream(global.appRoot + 'log/output' + getDate().day + '.txt', {
+		logStream = createWriteStream(global.appRoot + 'log/output' + getDate().day + '.txt', {
 			flags: 'a',
 			encoding: 'utf8',
 			autoClose: true,
@@ -55,18 +55,18 @@ export default (level: number, ...message: any[]): void => {
 
 function parseMessage(item) {
 	let output
-	if (typeof item === 'string') {
+	if (['string', 'number', 'boolean'].includes(typeof item)) {
 		output = item
 	} else {
 		try {
 			if (Object.prototype.toString.call(item) === '[object Error]') {
-				output = item.stack.toString()
+				output = '\n' + item.stack.toString()
 			} else {
-				output = JSON.stringify(item)
+				output = '\n' + JSON.stringify(item)
 			}
 		} catch (err) {
-			console.log(item)
-			output = err
+			console.log(err + '\n' + item)
+			output = ''
 		}
 	}
 	return output

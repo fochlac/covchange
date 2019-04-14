@@ -6,10 +6,12 @@
 	"scripts": {
 		"start": "nodemon --exec ts-node -- src/index.ts",
 		"build": "rm -rf ./dist && tsc && chmod +x ./dist/index.js",
-		"test": "jest --coverage"
+		"test": "jest",
+		"coverage": "jest --coverage && codecov --token=679dc888-f4df-4bbd-b3fe-54066caa7531",
+		"release": "npm version minor --no-git-tag-version"
 	},
 	"author": "low@fochlac.com",
-	"license": "ISC",
+	"license": "CC BY-NC-SA 3.0",
 	"dependencies": {
 		"abstract-express-router": "^1.5.0",
 		"body-parser": "*",
@@ -51,6 +53,7 @@
 		"immutable": "^4.0.0-rc.12",
 		"jest": "^24.7.1",
 		"jest-junit": "^6.3.0",
+		"nock": "^10.0.6",
 		"nodemon": "^1.18.11",
 		"sinon": "^7.3.1",
 		"supertest": "^4.0.2",
