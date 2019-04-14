@@ -16,12 +16,12 @@ import { createWriteStream, existsSync, mkdirSync } from 'fs'
  *  10: full trace: (requests objects, etc)
  *
  **/
-let currentDate = getDate().day
+let currentDate = new Date().toISOString().split('T')[0]
 if (!existsSync(global.appRoot + 'log')) {
 	mkdirSync(global.appRoot + 'log')
 }
 
-let logStream = createWriteStream(global.appRoot + 'log/output' + getDate().day + '.txt', {
+let logStream = createWriteStream(global.appRoot + 'log/output' + currentDate + '.txt', {
 	flags: 'a',
 	encoding: 'utf8',
 	autoClose: true,
@@ -32,18 +32,18 @@ logStream.on('error', err => {
 })
 
 export default (level: number, ...message: any[]): void => {
-	const now = getDate()
+	const now = new Date().toISOString()
 	const messages = message.map(parseMessage).join(' ')
-	const logMessage = `${now.day} - ${now.time} - ${level} - ${messages}`
+	const logMessage = `${now} - ${level} - ${messages}`
 
 	if (level <= global.logLevel) {
 		console.log(logMessage)
 	}
 
-	if (currentDate !== getDate().day) {
-		currentDate = getDate().day
+	if (currentDate !== new Date().toISOString().split('T')[0]) {
+		currentDate = new Date().toISOString().split('T')[0]
 		logStream.end()
-		logStream = createWriteStream(global.appRoot + 'log/output' + getDate().day + '.txt', {
+		logStream = createWriteStream(global.appRoot + 'log/output' + currentDate + '.txt', {
 			flags: 'a',
 			encoding: 'utf8',
 			autoClose: true,
@@ -70,12 +70,4 @@ function parseMessage(item) {
 		}
 	}
 	return output
-}
-
-function getDate() {
-	const date = new Date()
-	return {
-		day: date.getFullYear() + '_' + date.getMonth() + '_' + date.getDate(),
-		time: date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds(),
-	}
 }
