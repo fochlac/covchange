@@ -33,14 +33,7 @@ exports[`logger should parse errors , numbers and objects 1`] = `
 Array [
   Array [
     "2009-02-13T23:31:31.011Z - 1 - testmessage1 1 
-Error: test
-    at Object.it (C:\\\\gitHub\\\\covwatcher\\\\src\\\\utils\\\\__tests__\\\\logger-test.ts:58:32)
-    at Object.asyncJestTest (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\jasmineAsyncInstall.js:102:37)
-    at resolve (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\queueRunner.js:43:12)
-    at new Promise (<anonymous>)
-    at mapper (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\queueRunner.js:26:19)
-    at promise.then (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\queueRunner.js:73:41)
-    at process._tickCallback (internal/process/next_tick.js:68:7) 
+Error: test 
 {\\"test\\":\\"test\\"}",
   ],
 ]
@@ -50,14 +43,7 @@ exports[`logger should parse errors , numbers and objects 2`] = `
 Array [
   Array [
     "2009-02-13T23:31:31.011Z - 1 - testmessage1 1 
-Error: test
-    at Object.it (C:\\\\gitHub\\\\covwatcher\\\\src\\\\utils\\\\__tests__\\\\logger-test.ts:58:32)
-    at Object.asyncJestTest (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\jasmineAsyncInstall.js:102:37)
-    at resolve (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\queueRunner.js:43:12)
-    at new Promise (<anonymous>)
-    at mapper (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\queueRunner.js:26:19)
-    at promise.then (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\queueRunner.js:73:41)
-    at process._tickCallback (internal/process/next_tick.js:68:7) 
+Error: test 
 {\\"test\\":\\"test\\"}",
   ],
 ]
@@ -67,14 +53,7 @@ exports[`logger should parse errors , numbers and objects and pass on errors on 
 Array [
   Array [
     "2009-02-13T23:31:31.011Z - 1 - testmessage1 1 
-Error: test
-    at Object.it (C:\\\\gitHub\\\\covwatcher\\\\src\\\\utils\\\\__tests__\\\\logger-test.ts:73:32)
-    at Object.asyncJestTest (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\jasmineAsyncInstall.js:102:37)
-    at resolve (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\queueRunner.js:43:12)
-    at new Promise (<anonymous>)
-    at mapper (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\queueRunner.js:26:19)
-    at promise.then (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\queueRunner.js:73:41)
-    at process._tickCallback (internal/process/next_tick.js:68:7) 
+Error: test 
 {\\"test\\":\\"test\\"} ",
   ],
 ]
@@ -88,14 +67,7 @@ Array [
   ],
   Array [
     "2009-02-13T23:31:31.011Z - 1 - testmessage1 1 
-Error: test
-    at Object.it (C:\\\\gitHub\\\\covwatcher\\\\src\\\\utils\\\\__tests__\\\\logger-test.ts:73:32)
-    at Object.asyncJestTest (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\jasmineAsyncInstall.js:102:37)
-    at resolve (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\queueRunner.js:43:12)
-    at new Promise (<anonymous>)
-    at mapper (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\queueRunner.js:26:19)
-    at promise.then (C:\\\\gitHub\\\\covwatcher\\\\node_modules\\\\jest-jasmine2\\\\build\\\\queueRunner.js:73:41)
-    at process._tickCallback (internal/process/next_tick.js:68:7) 
+Error: test 
 {\\"test\\":\\"test\\"} ",
   ],
 ]

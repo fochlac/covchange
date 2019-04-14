@@ -17,6 +17,9 @@ jest.mock('fs', () => {
 	}
 })
 
+const error = new Error('test')
+error.stack = 'Error: test'
+
 describe('logger', () => {
 	beforeEach(() => {
 		jest.spyOn(global.console, 'log').mockImplementation(() => null)
@@ -55,7 +58,7 @@ describe('logger', () => {
 
 	it('should parse errors , numbers and objects', () => {
 		const logger = require('../logger').default
-		logger(1, 'testmessage1', 1, new Error('test'), { test: 'test' })
+		logger(1, 'testmessage1', 1, error, { test: 'test' })
 		expect(existsSync).toBeCalledTimes(0)
 		expect(mkdirSync).toBeCalledTimes(0)
 		expect(createWriteStream).toBeCalledTimes(0)
@@ -70,7 +73,7 @@ describe('logger', () => {
 		const logger = require('../logger').default
 		const testObject: { test: string; testObject?: any } = { test: 'test' }
 		testObject.testObject = testObject
-		logger(1, 'testmessage1', 1, new Error('test'), { test: 'test' }, testObject)
+		logger(1, 'testmessage1', 1, error, { test: 'test' }, testObject)
 		expect(existsSync).toBeCalledTimes(0)
 		expect(mkdirSync).toBeCalledTimes(0)
 		expect(createWriteStream).toBeCalledTimes(0)

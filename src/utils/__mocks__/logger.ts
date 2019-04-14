@@ -1,1 +1,1 @@
-export default jest.fn(console.log)
+export default jest.fn()

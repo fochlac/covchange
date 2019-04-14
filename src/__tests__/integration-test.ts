@@ -9,6 +9,17 @@ import supertest from 'supertest'
 
 jest.mock('../utils/file-db')
 jest.mock('../utils/logger')
+jest.mock('fs-extra', () => {
+	let data = {}
+
+	return {
+		outputFile: jest.fn((file, content) => {
+			data[file] = content
+			return Promise.resolve()
+		}),
+		readJSON: jest.fn(file => Promise.resolve(JSON.parse(data[file]))),
+	}
+})
 
 describe('upload branch, upload pr, expect repo', () => {
 	it('should send svgs', async () => {

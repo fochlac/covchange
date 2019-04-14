@@ -34,6 +34,6 @@ export const router = createRouter(
 		},
 	},
 	{
-		logger: (lvl, message) => logger(Math.floor(lvl * 2.5), ' - router - ', message),
+		logger: ({ level, message }) => logger(Math.floor(level * 2), ' - router - ', message),
 	},
 )
