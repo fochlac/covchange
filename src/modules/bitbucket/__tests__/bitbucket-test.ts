@@ -26,7 +26,7 @@ describe('get-base-branch', () => {
 	})
 
 	it('should create a post request object using the url', () => {
-		return Bitbucket.put('testurl', { test: 'test' }).then(() => {
+		return Bitbucket.post('testurl', { test: 'test' }).then(() => {
 			expect(request).toBeCalledTimes(1)
 			expect(request.mock.calls).toMatchSnapshot()
 		})

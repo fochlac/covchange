@@ -1,10 +1,8 @@
 import { createReportFromXML } from '../parse-report'
-import { readFileSync } from 'fs'
-
-const report = readFileSync('./tests/sample_report.xml', { encoding: 'utf8' })
+import { reportRaw } from '../../../__tests__/data/reports'
 
 describe('createReportFromXML', () => {
 	it('should properly parse an xml file', () => {
-		expect(createReportFromXML(report)).toMatchSnapshot()
+		expect(createReportFromXML(reportRaw)).toMatchSnapshot()
 	})
 })

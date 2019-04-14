@@ -5,7 +5,7 @@ import { mockRepository as repository } from './repository'
 const mockPullRequestRest = {
 	repository,
 	name: '12345',
-	report: null,
+	report: mockReport,
 }
 
 const mockPullRequest = {

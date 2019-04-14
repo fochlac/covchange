@@ -16,7 +16,7 @@ jest.mock('fs-extra', () => ({
 	readJSON: jest.fn(),
 }))
 
-describe('get-base-branch', () => {
+describe('fileDb', () => {
 	afterEach(() => {
 		moveSync.mockClear()
 		outputFile.mockClear()
@@ -68,7 +68,7 @@ describe('get-base-branch', () => {
 	it('should store data immutably', () => {
 		readJSON.mockImplementation(() => Promise.resolve({ test: 'test' }))
 		return initDb('name.ext').then(fileDb => {
-			const testObj = { test: 'testdata' }
+			const testObj: { test: string; test2?: string } = { test: 'testdata' }
 			fileDb.set('test2', testObj)
 			testObj.test2 = 'test2'
 			testObj.test = 'test1'

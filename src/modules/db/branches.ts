@@ -1,11 +1,10 @@
-import { outputFile as outputFileRaw, readJSON as readJSONRaw } from 'fs-extra'
+import { outputFile, readJSON } from 'fs-extra'
 
 import { forge } from '../../utils/forge'
 import initDb from '../../utils/file-db'
 
-const writeDiffs = (id, data) =>
-	outputFileRaw(global.storage + `branches/branch_${id}.json`, typeof data !== 'string' ? JSON.stringify(data) : data, 'utf8')
-const readDiffs = id => readJSONRaw(global.storage + `branches/branch_${id}.json`, 'utf8')
+const writeDiffs = (id, data) => outputFile(global.storage + `branches/branch_${id}.json`, JSON.stringify(data), 'utf8')
+const readDiffs = id => readJSON(global.storage + `branches/branch_${id}.json`, 'utf8')
 
 class BranchDb implements Core.BranchDb {
 	db: Core.FileDb
@@ -22,7 +21,7 @@ class BranchDb implements Core.BranchDb {
 
 	async exists(repository: Core.Repository, name: string): Promise<boolean> {
 		await this.ready
-		const id = `${repository}_${name}`
+		const id = forge.branchId({ repository, name })
 		return !!this.db.get(id)
 	}
 
@@ -45,19 +44,22 @@ class BranchDb implements Core.BranchDb {
 		const branch = this.db.get(id)
 		branch.lastModified = Date.now()
 		await Promise.all([writeDiffs(id, [branchRest.report, ...reports]), this.db.set(id, branch)])
-		branch.reports = [branchRest.report, ...reports]
 
-		return branch
+		return { ...branch, reports: [branchRest.report, ...reports] }
 	}
 
 	async create(branchRest: Core.BranchRest): Promise<Core.Branch> {
 		await this.ready
 		if (await this.exists(branchRest.repository, branchRest.name)) return Promise.reject('Branch already exists')
 		const id = forge.branchId(branchRest)
-		const branch = { ...branchRest, id, lastModified: Date.now() } as Core.Branch
+		const branch = {
+			repository: branchRest.repository,
+			name: branchRest.name,
+			id,
+			lastModified: Date.now(),
+		} as Core.Branch
 		await Promise.all([writeDiffs(id, [branchRest.report]), this.db.set(id, branch)])
-		branch.reports = [branchRest.report]
-		return branch
+		return { ...branch, reports: [branchRest.report] }
 	}
 }
 

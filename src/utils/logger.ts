@@ -1,7 +1,7 @@
 import * as fs from 'fs'
 
 /**
- *   Error Levels:
+ *   Log Levels:
  *   0: no error, very important info
  *   1: error: critical error in app
  *   2: error: internal error in app

@@ -14,25 +14,25 @@ export const addBranchReport = async (req, res) => {
 		.then(() => {
 			res.status(200).send({ success: true })
 		})
-		.catch(routerError(2, res, 'Error creating branch.'))
+		.catch(routerError(2, res, 'Error adding branch report.'))
 }
 
 export const addPullRequestReport = async (req, res) => {
 	try {
-		const pullRequestRest = req.body as Core.PullRequestRest
+		const pullRequestRest: Core.PullRequestRest = req.body
 		const action = (await pullRequestDb.exists(pullRequestRest.repository, pullRequestRest.name))
 			? pullRequestDb.update
 			: pullRequestDb.create
 		const base = await getBaseBranchFromPullrequest(pullRequestRest)
 
-		const pr = await action(pullRequestRest, base)
 		const baseBranch = await branchDb.get(base.repository, base.name)
+		if (!baseBranch) throw 'Base branch is not in the database.'
+		const pr = await action(pullRequestRest, base)
 
 		res.status(200).send({ success: true })
 
-		if (!baseBranch) throw 'Base branch is not in the database.'
-		writeReportToBitbucket(baseBranch, pr)
+		await writeReportToBitbucket(baseBranch, pr).catch(internalError(2, 'Error handling pull request:'))
 	} catch (err) {
-		internalError(2, 'Error handling pull request:')(err)
+		routerError(2, res, 'Error adding pullrequest report.')(err)
 	}
 }

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`createReportFromXML should properly parse an xml file 1`] = `
+exports[`middleware parseReport > should parse the xml in req.body.report 1`] = `
 Object {
   "files": Object {
     "orders/app/components/order-tours-tab/order-tours-tab.js": Object {

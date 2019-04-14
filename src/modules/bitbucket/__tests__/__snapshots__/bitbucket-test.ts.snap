@@ -26,7 +26,7 @@ Array [
         "Authorization": "testNonsenseKey",
       },
       "json": true,
-      "method": "put",
+      "method": "post",
       "uri": "http://test.bitbucket.server:8080/rest/api/1.0/testurl",
     },
   ],
