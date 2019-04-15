@@ -16,10 +16,21 @@ export function createCommentObject(diff: Core.DiffReport, comment?: Core.Commen
 	const changedFilesHeader = (Object.keys(diff.changed).length && ['| Quality | File | Change | Coverage |', '|---|---|---|---|']) || []
 	const deletedFiles = diff.deleted.length ? ['##### Deleted files', '```diff', ...diff.deleted.map(name => `- ${name}`), '```'] : []
 	const covSymbol = totalDiff < 0 ? symbolsMap.decrease : symbolsMap.increase
+	const summedMetrics = Object.values(diff.changed)
+		.map(diff => diff.changed)
+		.concat(Object.values(diff.new))
+		.reduce(
+			(sum, metric) => ({
+				coveredStatements: sum.coveredStatements + metric.coveredStatements,
+				statements: sum.statements + metric.statements,
+			}),
+			{ coveredStatements: 0, statements: 0 },
+		)
+	const diffCoverage = Math.round((summedMetrics.coveredStatements / summedMetrics.statements) * 100)
 
 	const lines = [
 		'### Coverage Statistics',
-		`#### ${covSymbol} This pull request will ${totalDiff > 0 ? 'decrease' : 'increase'}` +
+		`#### ${covSymbol} This pull request has a diff coverage of ${diffCoverage}% and will ${totalDiff > 0 ? 'decrease' : 'increase'}` +
 			` total coverage by ${Math.abs(totalDiff)}% to ${diff.total.changed.statementCov}%.`,
 		'',
 		...changedFilesHeader,
