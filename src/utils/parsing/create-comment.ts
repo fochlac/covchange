@@ -6,9 +6,9 @@ const symbolsMap = {
 	medium: `![ok](${svgBaseUrl}/ok.svg)`,
 	high: `![good](${svgBaseUrl}/good.svg)`,
 	optimal: `![top](${svgBaseUrl}/top.svg)`,
-	decrease: `![decrease](${svgBaseUrl}/long-arrow-down.svg)`,
-	increase: `![improvement](${svgBaseUrl}/long-arrow-up.svg)`,
-	new: `![new](${svgBaseUrl}/magic.svg)`,
+	decrease: `![decrease](${svgBaseUrl}/arrow-down.svg)`,
+	increase: `![improvement](${svgBaseUrl}/arrow-up.svg)`,
+	new: `![new](${svgBaseUrl}/new.svg)`,
 }
 
 export function createCommentObject(diff: Core.DiffReport, comment?: Core.Comment): Core.CommentRest {
@@ -56,8 +56,9 @@ function newFileInfo(name: string, metrics: Core.Metrics) {
 
 function changedFileInfo(name: string, { diff: { statementCov }, changed, changed: { coveredStatements }, original }: Core.Diff) {
 	const covSymbol = statementCov < 0 ? symbolsMap.decrease : symbolsMap.increase
-	const diffCell = `${covSymbol} ${Math.round(statementCov)}% (${original.coveredStatements}:arrow_right:${coveredStatements})`
-	const newCoverageCell = `${Math.round(statementCov)}% (${coveredStatements}/${changed.statements})`
+	const diffPercentage = `${statementCov < 0 ? '-' : '+'}${Math.abs(Math.round(statementCov))}%`
+	const diffCell = `${covSymbol} ${diffPercentage} (${original.coveredStatements}:arrow_right:${coveredStatements})`
+	const newCoverageCell = `${Math.round(changed.statementCov)}% (${coveredStatements}/${changed.statements})`
 
 	return `| ${getSymbolFromCoverage(changed)} | ${name} | ${diffCell} | ${newCoverageCell} |`
 }

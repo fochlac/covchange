@@ -31,7 +31,7 @@ describe('upload branch, upload pr, expect repo', () => {
 				'accept-ranges': 'bytes',
 				'cache-control': 'public, max-age=0',
 				connection: 'close',
-				'content-length': '511',
+				'content-length': '547',
 				'content-type': 'image/svg+xml',
 				vary: 'Accept-Encoding',
 				'x-powered-by': 'Express',
