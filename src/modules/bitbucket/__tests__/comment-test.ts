@@ -9,6 +9,7 @@ import { writeReportToBitbucket } from '../comment'
 
 jest.mock('../bitbucket', () => ({
 	Bitbucket: {
+		get: jest.fn(() => Promise.resolve({ id: 0, version: 2 })),
 		put: jest.fn(() => Promise.resolve({ id: 0, version: 1 })),
 		post: jest.fn(() => Promise.resolve({ id: 0, version: 1 })),
 	},
@@ -16,7 +17,7 @@ jest.mock('../bitbucket', () => ({
 jest.mock('../../db/comments', () => ({
 	commentDb: { set: jest.fn(() => Promise.resolve()), get: jest.fn(() => Promise.resolve({ commentId: 'commentId' })) },
 }))
-jest.mock('../../../utils/parsing/create-comment', () => ({ createCommentObject: jest.fn(() => 'testcomment') }))
+jest.mock('../../../utils/parsing/create-comment', () => ({ createCommentObject: jest.fn(() => ({ text: 'testcomment' })) }))
 jest.mock('../../../utils/parsing/diff', () => ({ diffReports: jest.fn(() => 'diff') }))
 
 describe('diff-module', () => {
@@ -43,7 +44,8 @@ describe('diff-module', () => {
 		return writeReportToBitbucket(base, pr).then(() => {
 			expect(createCommentObject).toBeCalledTimes(1)
 			expect(createCommentObject).toBeCalledWith('diff', testcomment)
-			expect(Bitbucket.put).toBeCalledWith('users/slug/repos/name/pull-requests/12345/comments/commentId', 'testcomment')
+			expect(Bitbucket.get).toBeCalledWith('users/slug/repos/name/pull-requests/12345/comments/commentId')
+			expect(Bitbucket.put).toBeCalledWith('users/slug/repos/name/pull-requests/12345/comments/commentId',  { text: 'testcomment', version: 2 })
 			expect(commentDb.set).toBeCalledWith(repository, pr.name, { ...testcomment, version: 1 })
 		})
 	})
@@ -55,7 +57,7 @@ describe('diff-module', () => {
 		return writeReportToBitbucket(base, pr).then(() => {
 			expect(createCommentObject).toBeCalledTimes(1)
 			expect(createCommentObject).toBeCalledWith('diff', undefined)
-			expect(Bitbucket.post).toBeCalledWith('users/slug/repos/name/pull-requests/12345/comments/', 'testcomment')
+			expect(Bitbucket.post).toBeCalledWith('users/slug/repos/name/pull-requests/12345/comments/', { text: 'testcomment' })
 			expect(commentDb.set).toBeCalledWith(repository, pr.name, { commentId: '0', version: 1 })
 		})
 	})

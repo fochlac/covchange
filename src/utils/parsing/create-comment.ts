@@ -30,7 +30,7 @@ export function createCommentObject(diff: Core.DiffReport, comment?: Core.Commen
 
 	const lines = [
 		'### Coverage Statistics',
-		`#### ${covSymbol} This pull request has a diff coverage of ${diffCoverage}% and will ${totalDiff > 0 ? 'decrease' : 'increase'}` +
+		`#### ${covSymbol} This pull request has a diff coverage of ${diffCoverage}% and will ${totalDiff < 0 ? 'decrease' : 'increase'}` +
 			` total coverage by ${Math.abs(totalDiff)}% to ${diff.total.changed.statementCov}%.`,
 		'',
 		...changedFilesHeader,
@@ -57,7 +57,7 @@ function newFileInfo(name: string, metrics: Core.Metrics) {
 function changedFileInfo(name: string, { diff: { statementCov }, changed, changed: { coveredStatements }, original }: Core.Diff) {
 	const covSymbol = statementCov < 0 ? symbolsMap.decrease : symbolsMap.increase
 	const diffPercentage = `${statementCov < 0 ? '-' : '+'}${Math.abs(Math.round(statementCov))}%`
-	const diffCell = `${covSymbol} ${diffPercentage} (${original.coveredStatements}:arrow_right:${coveredStatements})`
+	const diffCell = `${covSymbol} ${diffPercentage} (${original.coveredStatements} :arrow_right: ${coveredStatements})`
 	const newCoverageCell = `${Math.round(changed.statementCov)}% (${coveredStatements}/${changed.statements})`
 
 	return `| ${getSymbolFromCoverage(changed)} | ${name} | ${diffCell} | ${newCoverageCell} |`

@@ -85,8 +85,10 @@ describe('upload branch, upload pr, expect repo', () => {
 					},
 				},
 			})
-			.put('/rest/api/1.0/users/slug/repos/name/pull-requests/12345/comments/1')
-			.reply(200, { version: 1, id: 1 })
+			.get('/rest/api/1.0/users/slug/repos/name/pull-requests/12345/comments/1')
+			.reply(200, { version: 2, id: 1 })
+		.put('/rest/api/1.0/users/slug/repos/name/pull-requests/12345/comments/1', { version: 2, text: /.*/})
+			.reply(200, { version: 3, id: 1 })
 
 		await supertest(router)
 			.post('/api/pullrequest')

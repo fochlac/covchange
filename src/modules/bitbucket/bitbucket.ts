@@ -38,7 +38,8 @@ function apiCall({ url, method, body }: ApiCallParameter): Promise<any> {
 		config.body = body
 	}
 
-	return request(config).catch(
-		internalError(2, `Error sending ${method}-request to ${url} with payload:\n ${JSON.stringify(body, null, 2)}`),
-	)
+	return request(config).catch((err) => {
+		internalError(2, `Error sending ${method}-request to ${url} with payload:\n ${JSON.stringify(body, null, 2)}`)(err)
+		return Promise.reject('Error while accessing Bitbucket API.')
+	})
 }

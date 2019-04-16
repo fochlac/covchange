@@ -15,10 +15,12 @@ export async function writeReportToBitbucket(base: Core.Branch, pr: Core.PullReq
 	return existingComment ? updateComment(comment, existingComment, pr) : createComment(comment, pr)
 }
 
-function updateComment(comment: Core.CommentRest, existingComment: Core.Comment, pr: Core.PullRequest): Promise<Core.Comment> {
-	return Bitbucket.put(createApiSlug(pr, existingComment.commentId), comment).then(({ version }) =>
-		commentDb.set(pr.repository, pr.name, { commentId: existingComment.commentId, version }),
-	)
+async function updateComment(comment: Core.CommentRest, existingComment: Core.Comment, pr: Core.PullRequest): Promise<Core.Comment> {
+	const { version: currentVersion } = await Bitbucket.get(createApiSlug(pr, existingComment.commentId))
+	comment.version = currentVersion
+	const { version: newVersion } = await Bitbucket.put(createApiSlug(pr, existingComment.commentId), comment)
+
+	return commentDb.set(pr.repository, pr.name, { commentId: existingComment.commentId, version: newVersion })
 }
 
 function createComment(comment: Core.CommentRest, pr: Core.PullRequest): Promise<Core.Comment> {
