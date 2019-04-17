@@ -12,7 +12,7 @@ const symbolsMap = {
 }
 
 export function createCommentObject(diff: Core.DiffReport, comment?: Core.Comment): Core.CommentRest {
-	const totalDiff = diff.total.diff.statementCov
+	const totalDiff = Math.round((diff.total.changed.statementCov - diff.total.original.statementCov) * 100) / 100
 	const changedFilesHeader = (Object.keys(diff.changed).length && ['| Quality | File | Change | Coverage |', '|---|---|---|---|']) || []
 	const deletedFiles = diff.deleted.length ? ['##### Deleted files', '```diff', ...diff.deleted.map(name => `- ${name}`), '```'] : []
 	const covSymbol = totalDiff < 0 ? symbolsMap.decrease : symbolsMap.increase
