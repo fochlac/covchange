@@ -35,5 +35,6 @@ export const router = createRouter(
 	},
 	{
 		logger: ({ level, message }) => logger(Math.floor(level * 2), ' - router - ', message),
+		bodyParserOptions: { limit: '50mb'}
 	},
 )

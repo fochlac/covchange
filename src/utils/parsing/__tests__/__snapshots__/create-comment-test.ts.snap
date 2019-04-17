@@ -3,7 +3,7 @@
 exports[`diff-module should create a comment from the diff report 1`] = `
 Object {
   "text": "### Coverage Statistics
-#### ![improvement](http://undefined:undefined/svg/arrow-up.svg) This pull request has a diff coverage of 84% and will decrease total coverage by 2.3% to 87.19%.
+#### ![improvement](http://undefined:undefined/svg/arrow-up.svg) This pull request has a diff coverage of 84% and will increase total coverage by 2.3% to 87.19%.
 
 | Quality | File | Change | Coverage |
 |---|---|---|---|
