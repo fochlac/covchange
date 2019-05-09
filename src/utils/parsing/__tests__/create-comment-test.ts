@@ -18,4 +18,9 @@ describe('diff-module', () => {
 		const comment = createCommentObject(diff, { id: '0', commentId: '0', version: 1 })
 		expect(comment.version).toEqual(1)
 	})
+
+	it('should create a comment from the diff report', () => {
+		const comment = createCommentObject(diff, { id: '0', commentId: '0', version: 1 }, 'http://ttbsbld102.dev.ttw:8080/job/Atlantis-PR/298936/PR-UnitTestCoverage')
+		expect(comment).toMatchSnapshot()
+	})
 })

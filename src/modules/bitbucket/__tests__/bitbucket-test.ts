@@ -1,6 +1,7 @@
 import '../../../__tests__/mock-config'
 
 import { Bitbucket } from '../bitbucket'
+import logger from '../../../utils/logger';
 import request from 'request-promise-native'
 
 jest.mock('request-promise-native', () => jest.fn(() => Promise.resolve()))
@@ -29,6 +30,17 @@ describe('get-base-branch', () => {
 		return Bitbucket.post('testurl', { test: 'test' }).then(() => {
 			expect(request).toBeCalledTimes(1)
 			expect(request.mock.calls).toMatchSnapshot()
+		})
+	})
+
+	it('should reject on error a post request object using the url', () => {
+		request.mockImplementation(() => Promise.reject('testerror'))
+		return Bitbucket.post('testurl', { test: 'test' }).catch(err => err).then((err) => {
+			expect(err).toEqual('Error while accessing Bitbucket API.')
+			expect(request).toBeCalledTimes(1)
+			expect(request.mock.calls).toMatchSnapshot()
+			// @ts-ignore
+			expect(logger.mock.calls).toMatchSnapshot()
 		})
 	})
 })

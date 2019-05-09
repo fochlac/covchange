@@ -36,19 +36,20 @@ class PullRequestDb implements Core.PullRequestDb {
 		return null
 	}
 
-	async update({ name, repository, report }: Core.PullRequestRest): Promise<Core.PullRequest> {
+	async update({ name, repository, report, task, lcov }: Core.PullRequestRest): Promise<Core.PullRequest> {
 		await this.ready
 		if (!(await this.exists(repository, name))) return Promise.reject('Pull request does not exist')
 		const id = forge.pullRequestId({ repository, name })
 		const reports = (await readDiffs(id)).filter(({ timestamp }) => timestamp !== report.timestamp)
-		const pullRequest = this.db.get(id)
-		pullRequest.lastModified = Date.now()
-		await Promise.all([writeDiffs(id, [report, ...reports]), this.db.set(id, pullRequest)])
+		await Promise.all([
+			this.db.set(id, {...this.db.get(id), lastModified: Date.now(), task, lcov}),
+			writeDiffs(id, [report, ...reports]),
+		])
 
-		return { ...pullRequest, reports: [report, ...reports] }
+		return { ...this.db.get(id), reports: [report, ...reports] }
 	}
 
-	async create({ name, repository, report }: Core.PullRequestRest, base: Core.BaseBranch): Promise<Core.PullRequest> {
+	async create({ name, repository, report, task, lcov }: Core.PullRequestRest, base: Core.BaseBranch): Promise<Core.PullRequest> {
 		await this.ready
 		if (await this.exists(repository, name)) return Promise.reject('Pull request already exists')
 		const id = forge.pullRequestId({ repository, name })
@@ -57,6 +58,8 @@ class PullRequestDb implements Core.PullRequestDb {
 			name,
 			repository,
 			base,
+			task,
+			lcov,
 			lastModified: Date.now(),
 		} as Core.PullRequest
 		await Promise.all([writeDiffs(id, [report]), this.db.set(id, pullRequest)])

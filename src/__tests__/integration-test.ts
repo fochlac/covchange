@@ -1,9 +1,11 @@
 import './mock-config'
 
+import { reportRaw, reportRaw2 } from './data/reports'
+
+import logger from '../utils/logger';
 import { mockBranchRest } from './data/branches'
 import { mockPullRequestRest } from './data/pullrequests'
 import nock from 'nock'
-import { reportRaw } from './data/reports'
 import { router } from '../router'
 import supertest from 'supertest'
 
@@ -22,6 +24,12 @@ jest.mock('fs-extra', () => {
 })
 
 describe('upload branch, upload pr, expect repo', () => {
+
+	afterEach(() => {
+		// @ts-ignore
+		logger.mockClear()
+	})
+
 	it('should send svgs', async () => {
 		const response = await supertest(router).get('/svg/arrow-up.svg')
 
@@ -31,12 +39,14 @@ describe('upload branch, upload pr, expect repo', () => {
 				'accept-ranges': 'bytes',
 				'cache-control': 'public, max-age=0',
 				connection: 'close',
-				'content-length': '547',
 				'content-type': 'image/svg+xml',
 				vary: 'Accept-Encoding',
 				'x-powered-by': 'Express',
 			},
 		})
+
+		//@ts-ignore
+		expect(logger.mock.calls).toMatchSnapshot()
 	})
 
 	it('should create branch, create pullrequest and send comment', async () => {
@@ -68,6 +78,9 @@ describe('upload branch, upload pr, expect repo', () => {
 			.expect(200)
 
 		expect(bitbucket.isDone()).toBeTruthy()
+
+		//@ts-ignore
+		expect(logger.mock.calls).toMatchSnapshot()
 	})
 
 	it('should update pullrequest and update comment', async () => {
@@ -87,7 +100,7 @@ describe('upload branch, upload pr, expect repo', () => {
 			})
 			.get('/rest/api/1.0/users/slug/repos/name/pull-requests/12345/comments/1')
 			.reply(200, { version: 2, id: 1 })
-		.put('/rest/api/1.0/users/slug/repos/name/pull-requests/12345/comments/1', { version: 2, text: /.*/})
+			.put('/rest/api/1.0/users/slug/repos/name/pull-requests/12345/comments/1', { version: 2, text: /.*/ })
 			.reply(200, { version: 3, id: 1 })
 
 		await supertest(router)
@@ -96,5 +109,46 @@ describe('upload branch, upload pr, expect repo', () => {
 			.expect(200)
 
 		expect(bitbucket.isDone()).toBeTruthy()
+
+		//@ts-ignore
+		expect(logger.mock.calls).toMatchSnapshot()
+	})
+
+	it('should update branch, update comment and create task', async () => {
+		const bitbucket = nock('http://test.bitbucket.server:8080')
+			.get('/rest/api/1.0/users/slug/repos/name/pull-requests/12345/')
+			.reply('200', {
+				toRef: {
+					displayId: mockBranchRest.name,
+					repository: {
+						slug: mockBranchRest.repository.repo,
+						project: {
+							key: mockBranchRest.repository.project,
+							type: 'USERS',
+						},
+					},
+				},
+			})
+			.get('/rest/api/1.0/users/slug/repos/name/pull-requests/12345/comments/1')
+			.reply(200, { version: 2, id: 1 })
+			.put('/rest/api/1.0/users/slug/repos/name/pull-requests/12345/comments/1')
+			.reply(200, { version: 3, id: 1 })
+			.post('/rest/api/1.0/tasks/')
+			.reply(200, { id: 1 })
+
+		await supertest(router)
+			.post('/api/branch')
+			.send({ ...mockBranchRest, report: reportRaw2 })
+			.expect(200)
+
+		await supertest(router)
+			.post('/api/pullrequest')
+			.send({ ...mockPullRequestRest, task: 1, report: reportRaw })
+			.expect(200)
+
+		expect(bitbucket.isDone()).toBeTruthy()
+
+		//@ts-ignore
+		expect(logger.mock.calls).toMatchSnapshot()
 	})
 })

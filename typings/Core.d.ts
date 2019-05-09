@@ -51,6 +51,7 @@ declare namespace Core {
 		id: Id
 		commentId: Id
 		version: number
+		taskId?: Id
 	}
 
 	interface CommentRest {
@@ -79,6 +80,8 @@ declare namespace Core {
 		name: string
 		repository: Repository
 		report: Report
+		task: boolean
+		lcov?: string
 	}
 
 	interface Branch {
@@ -95,6 +98,8 @@ declare namespace Core {
 		base: BaseBranch
 		id: Id
 		lastModified: Timestamp
+		task: boolean
+		lcov?: string
 		reports?: Report[]
 	}
 

@@ -21,3 +21,25 @@ Object {
   "version": undefined,
 }
 `;
+
+exports[`diff-module should create a comment from the diff report 2`] = `
+Object {
+  "text": "### Coverage Statistics
+#### ![improvement](http://undefined:undefined/svg/arrow-up.svg) This pull request has a diff coverage of 84% and will increase total coverage by 2.38% to 87.19%.
+
+| Quality | File | Change | Coverage |
+|---|---|---|---|
+| ![critical](http://undefined:undefined/svg/critical.svg) | [orders/app/index.js](http://ttbsbld102.dev.ttw:8080/job/Atlantis-PR/298936/PR-UnitTestCoverage/orders/app/index.js.html) | ![improvement](http://undefined:undefined/svg/arrow-up.svg) +8% (0 :arrow_right: 1) | 8% (1/13) |
+| ![good](http://undefined:undefined/svg/good.svg) | [orders/app/components/order-tours-tab/order-tours-table.js](http://ttbsbld102.dev.ttw:8080/job/Atlantis-PR/298936/PR-UnitTestCoverage/orders/app/components/order-tours-tab/order-tours-table.js.html) | ![improvement](http://undefined:undefined/svg/arrow-up.svg) +81% (0 :arrow_right: 22) | 81% (22/27) |
+| ![top](http://undefined:undefined/svg/top.svg) | [orders/app/components/orders-view.js](http://ttbsbld102.dev.ttw:8080/job/Atlantis-PR/298936/PR-UnitTestCoverage/orders/app/components/orders-view.js.html) | ![decrease](http://undefined:undefined/svg/arrow-down.svg) -6% (47 :arrow_right: 44) | 94% (44/47) |
+| ![ok](http://undefined:undefined/svg/ok.svg) | [orders/app/components/orders-filter-bar.js](http://ttbsbld102.dev.ttw:8080/job/Atlantis-PR/298936/PR-UnitTestCoverage/orders/app/components/orders-filter-bar.js.html) | ![improvement](http://undefined:undefined/svg/arrow-up.svg) +13% (56 :arrow_right: 53) | 96% (53/55) |
+| ![top](http://undefined:undefined/svg/top.svg) | [orders/app/components/order-tours-tab/order-tours-table-renderer.js](http://ttbsbld102.dev.ttw:8080/job/Atlantis-PR/298936/PR-UnitTestCoverage/orders/app/components/order-tours-tab/order-tours-table-renderer.js.html) | ![improvement](http://undefined:undefined/svg/arrow-up.svg) +98% (0 :arrow_right: 44) | 98% (44/45) |
+| ![warning](http://undefined:undefined/svg/warning.svg) | orders/app/components/order-tours-tab/order-tours-table-core.js | ![new](http://undefined:undefined/svg/new.svg) *new* | 55% (6/11) |
+| ![warning](http://undefined:undefined/svg/warning.svg) | orders/app/components/orders-subviews.js | ![new](http://undefined:undefined/svg/new.svg) *new* | 68% (17/25) |
+##### Deleted files
+\`\`\`diff
+- orders/module.js
+\`\`\`",
+  "version": 1,
+}
+`;

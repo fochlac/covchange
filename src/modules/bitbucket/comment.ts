@@ -1,3 +1,5 @@
+import { openTask, resolveTask } from './tasks'
+
 import { Bitbucket } from './bitbucket'
 import { commentDb } from '../db/comments'
 import { createCommentObject } from '../../utils/parsing/create-comment'
@@ -10,21 +12,24 @@ function createApiSlug({ repository: { type, repo, project }, name }: Core.PullR
 export async function writeReportToBitbucket(base: Core.Branch, pr: Core.PullRequest) {
 	const diff = diffReports(base.reports[0], pr.reports[0])
 	const existingComment = await commentDb.get(pr.repository, pr.name)
-	const comment = createCommentObject(diff, existingComment)
+	const comment = createCommentObject(diff, existingComment, pr.lcov)
 
-	return existingComment ? updateComment(comment, existingComment, pr) : createComment(comment, pr)
-}
+	const { id, version }: { id: number; version: number } = existingComment
+		? await Bitbucket.get(createApiSlug(pr, existingComment.commentId))
+			.then(({ version, id }) => Bitbucket.put(createApiSlug(pr, id), { ...comment, version }))
+		: await Bitbucket.post(createApiSlug(pr), comment)
 
-async function updateComment(comment: Core.CommentRest, existingComment: Core.Comment, pr: Core.PullRequest): Promise<Core.Comment> {
-	const { version: currentVersion } = await Bitbucket.get(createApiSlug(pr, existingComment.commentId))
-	comment.version = currentVersion
-	const { version: newVersion } = await Bitbucket.put(createApiSlug(pr, existingComment.commentId), comment)
+	const newComment: Core.Comment = {
+		...existingComment,
+		commentId: id.toString(),
+		version,
+	}
 
-	return commentDb.set(pr.repository, pr.name, { commentId: existingComment.commentId, version: newVersion })
-}
+	if (pr.task && diff.total.diff.statementCov < 0) {
+		newComment.taskId = await openTask(newComment)
+	} else if (newComment.taskId && diff.total.diff.statementCov >= 0) {
+		await resolveTask(newComment)
+	}
 
-function createComment(comment: Core.CommentRest, pr: Core.PullRequest): Promise<Core.Comment> {
-	return Bitbucket.post(createApiSlug(pr), comment).then(({ id, version }: { id: number; version: number }) =>
-		commentDb.set(pr.repository, pr.name, { commentId: id.toString(), version }),
-	)
+	return commentDb.set(pr.repository, pr.name, newComment)
 }

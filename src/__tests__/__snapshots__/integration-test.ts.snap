@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`upload branch, upload pr, expect repo should create branch, create pullrequest and send comment 1`] = `
+Array [
+  Array [
+    8,
+    " - router - ",
+    "POST call to /api/branch",
+  ],
+  Array [
+    6,
+    " - router - ",
+    "Validation succeded for call to /api/branch",
+  ],
+  Array [
+    8,
+    " - router - ",
+    "POST call to /api/pullrequest",
+  ],
+  Array [
+    6,
+    " - router - ",
+    "Validation succeded for call to /api/pullrequest",
+  ],
+]
+`;
+
+exports[`upload branch, upload pr, expect repo should send svgs 1`] = `
+Array [
+  Array [
+    8,
+    " - router - ",
+    "GET call to /svg/arrow-up.svg",
+  ],
+]
+`;
+
+exports[`upload branch, upload pr, expect repo should update branch, update comment and create task 1`] = `
+Array [
+  Array [
+    8,
+    " - router - ",
+    "POST call to /api/branch",
+  ],
+  Array [
+    6,
+    " - router - ",
+    "Validation succeded for call to /api/branch",
+  ],
+  Array [
+    8,
+    " - router - ",
+    "POST call to /api/pullrequest",
+  ],
+  Array [
+    6,
+    " - router - ",
+    "Validation succeded for call to /api/pullrequest",
+  ],
+]
+`;
+
+exports[`upload branch, upload pr, expect repo should update pullrequest and update comment 1`] = `
+Array [
+  Array [
+    8,
+    " - router - ",
+    "POST call to /api/pullrequest",
+  ],
+  Array [
+    6,
+    " - router - ",
+    "Validation succeded for call to /api/pullrequest",
+  ],
+]
+`;

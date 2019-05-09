@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`task should create a task 1`] = `
+Array [
+  Array [
+    "tasks/",
+    Object {
+      "anchor": Object {
+        "id": "commentId",
+        "type": "COMMENT",
+      },
+      "text": "Please add more unit tests.",
+    },
+  ],
+]
+`;
+
+exports[`task should update existing task to open 1`] = `
+Array [
+  Array [
+    "tasks/12",
+    Object {
+      "id": "12",
+      "state": "OPEN",
+    },
+  ],
+]
+`;
+
+exports[`task should update existing task to resolved 1`] = `
+Array [
+  Array [
+    "tasks/12",
+    Object {
+      "id": "12",
+      "state": "RESOLVED",
+    },
+  ],
+]
+`;

@@ -3,12 +3,9 @@ jobs:
     build:
         working_directory: /home/circleci/covwatcher
         docker:
-            - image: circleci/node:latest-browsers
+            - image: circleci/node:10.15.3
         steps:
             - checkout
-            - run:
-                  name: update-npm
-                  command: 'sudo npm install -g npm@latest'
             - restore_cache:
                   key: dependency-cache-{{ checksum "package.json" }}
             - run:

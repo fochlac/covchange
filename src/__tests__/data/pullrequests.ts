@@ -6,6 +6,7 @@ const mockPullRequestRest = {
 	repository,
 	name: '12345',
 	report: mockReport,
+	task: false
 }
 
 const mockPullRequest = {
@@ -18,6 +19,7 @@ const mockPullRequest = {
 		name: 'base',
 		repository,
 	},
+	task: false
 }
 
 export { mockPullRequestRest, mockPullRequest }

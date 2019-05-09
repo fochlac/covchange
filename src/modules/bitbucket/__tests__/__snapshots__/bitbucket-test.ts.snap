@@ -50,3 +50,36 @@ Array [
   ],
 ]
 `;
+
+exports[`get-base-branch should reject on error a post request object using the url 1`] = `
+Array [
+  Array [
+    Object {
+      "body": Object {
+        "test": "test",
+      },
+      "headers": Object {
+        "Authorization": "testNonsenseKey",
+      },
+      "json": true,
+      "method": "post",
+      "uri": "http://test.bitbucket.server:8080/rest/api/1.0/testurl",
+    },
+  ],
+]
+`;
+
+exports[`get-base-branch should reject on error a post request object using the url 2`] = `
+Array [
+  Array [
+    2,
+    "error -",
+    "Bitbucket API call failed: ",
+    "Error sending post-request to testurl with payload:
+ {
+  \\"test\\": \\"test\\"
+}",
+    "testerror",
+  ],
+]
+`;

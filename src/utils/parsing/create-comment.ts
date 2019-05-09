@@ -11,7 +11,7 @@ const symbolsMap = {
 	new: `![new](${svgBaseUrl}/new.svg)`,
 }
 
-export function createCommentObject(diff: Core.DiffReport, comment?: Core.Comment): Core.CommentRest {
+export function createCommentObject(diff: Core.DiffReport, comment?: Core.Comment, lcov?: string): Core.CommentRest {
 	const totalDiff = Math.round((diff.total.changed.statementCov - diff.total.original.statementCov) * 100) / 100
 	const changedFilesHeader = (Object.keys(diff.changed).length && ['| Quality | File | Change | Coverage |', '|---|---|---|---|']) || []
 	const deletedFiles = diff.deleted.length ? ['##### Deleted files', '```diff', ...diff.deleted.map(name => `- ${name}`), '```'] : []
@@ -37,30 +37,31 @@ export function createCommentObject(diff: Core.DiffReport, comment?: Core.Commen
 		...Object.keys(diff.changed)
 			.sort((a, b) => diff.changed[a].changed.statementCov - diff.changed[b].changed.statementCov)
 			.slice(0, 10)
-			.map(name => changedFileInfo(name, diff.changed[name])),
+			.map(name => changedFileInfo(name, diff.changed[name], lcov)),
 		...Object.keys(diff.new)
 			.sort((a, b) => diff.new[a].statementCov - diff.new[b].statementCov)
 			.slice(0, 10)
-			.map(name => newFileInfo(name, diff.new[name])),
+			.map(name => newFileInfo(name, diff.new[name], lcov)),
 		...deletedFiles,
 	]
 
 	return { text: lines.join('\n'), version: comment && comment.version }
 }
 
-function newFileInfo(name: string, metrics: Core.Metrics) {
+function newFileInfo(name: string, metrics: Core.Metrics, lcov?: string) {
 	const newCoverageCell = `${Math.round(metrics.statementCov)}% (${metrics.coveredStatements}/${metrics.statements})`
 
 	return `| ${getSymbolFromCoverage(metrics)} | ${name} | ${symbolsMap.new} *new* | ${newCoverageCell} |`
 }
 
-function changedFileInfo(name: string, { diff: { statementCov }, changed, changed: { coveredStatements }, original }: Core.Diff) {
+function changedFileInfo(name: string, { diff: { statementCov }, changed, changed: { coveredStatements }, original }: Core.Diff, lcov?: string) {
 	const covSymbol = statementCov < 0 ? symbolsMap.decrease : symbolsMap.increase
 	const diffPercentage = `${statementCov < 0 ? '-' : '+'}${Math.abs(Math.round(statementCov))}%`
 	const diffCell = `${covSymbol} ${diffPercentage} (${original.coveredStatements} :arrow_right: ${coveredStatements})`
 	const newCoverageCell = `${Math.round(changed.statementCov)}% (${coveredStatements}/${changed.statements})`
+	const nameCell = lcov && lcov.length ? `[${name}](${lcov}/${name}.html)` : name
 
-	return `| ${getSymbolFromCoverage(changed)} | ${name} | ${diffCell} | ${newCoverageCell} |`
+	return `| ${getSymbolFromCoverage(changed)} | ${nameCell} | ${diffCell} | ${newCoverageCell} |`
 }
 
 const getSymbolFromCoverage = (metrics: Core.Metrics) => {

@@ -26,6 +26,7 @@ const clock = useFakeTimers(new Date(mockDate))
 
 const mockPullRequestRest2 = {
 	...mockPullRequestRest,
+	lcov: 'testurl',
 	report: {
 		...mockPullRequestRest.report,
 		timestamp: mockDate,
@@ -43,10 +44,12 @@ const dbPullRequest = {
 	repository: { project: 'slug', repo: 'name', type: 'users' },
 	name: '12345',
 	base,
+	task: false
 }
 
 const dbPullRequest2 = {
 	...dbPullRequest,
+	lcov: 'testurl',
 	lastModified: mockDate + 1000,
 }
 

@@ -79,10 +79,10 @@ describe('controllers', () => {
 		expect(branchDb.exists).toBeCalledWith(mockBranchRest.repository, mockBranchRest.name)
 		expect(branchDb.update).toBeCalledTimes(1)
 		expect(branchDb.update).toBeCalledWith(mockBranchRest)
-		expect(send).toBeCalledTimes(1)
-		expect(send).toBeCalledWith({ success: true })
 		expect(res.status).toBeCalledTimes(1)
 		expect(res.status).toBeCalledWith(200)
+		expect(send).toBeCalledTimes(1)
+		expect(send).toBeCalledWith({ success: true })
 	})
 
 	it('addBranchReport > should handle errors', async () => {
@@ -94,10 +94,10 @@ describe('controllers', () => {
 		expect(branchDb.exists).toBeCalledWith(mockBranchRest.repository, mockBranchRest.name)
 		expect(branchDb.update).toBeCalledTimes(1)
 		expect(branchDb.update).toBeCalledWith(mockBranchRest)
-		expect(send).toBeCalledTimes(1)
-		expect(send).toBeCalledWith({ success: false })
 		expect(res.status).toBeCalledTimes(1)
 		expect(res.status).toBeCalledWith(500)
+		expect(send).toBeCalledTimes(1)
+		expect(send).toBeCalledWith({ success: false })
 	})
 
 	it('addBranchReport > should create branch report if it exists', async () => {
@@ -107,12 +107,12 @@ describe('controllers', () => {
 		expect(pullRequestDb.exists).toBeCalledWith(mockPullRequestRest.repository, mockPullRequestRest.name)
 		expect(branchDb.get).toBeCalledTimes(1)
 		expect(pullRequestDb.create).toBeCalledTimes(1)
-		expect(pullRequestDb.create).toBeCalledWith(mockPullRequestRest, mockBranch)
+		expect(pullRequestDb.create).toBeCalledWith({...mockPullRequestRest, task: false }, mockBranch)
+		expect(res.status).toBeCalledTimes(1)
+		expect(res.status).toBeCalledWith(200)
 		expect(send).toBeCalledTimes(1)
 		expect(send).toBeCalledWith({ success: true })
-		expect(res.status).toBeCalledTimes(1)
 		expect(writeReportToBitbucket).toBeCalledTimes(1)
-		expect(res.status).toBeCalledWith(200)
 	})
 
 	it('addBranchReport > should update branch report if it exists', async () => {
@@ -125,12 +125,12 @@ describe('controllers', () => {
 		expect(branchDb.get).toBeCalledTimes(1)
 		expect(pullRequestDb.create).toBeCalledTimes(0)
 		expect(pullRequestDb.update).toBeCalledTimes(1)
-		expect(pullRequestDb.update).toBeCalledWith(mockPullRequestRest, mockBranch)
+		expect(pullRequestDb.update).toBeCalledWith({...mockPullRequestRest, task: false }, mockBranch)
+		expect(res.status).toBeCalledTimes(1)
+		expect(res.status).toBeCalledWith(200)
 		expect(send).toBeCalledTimes(1)
 		expect(send).toBeCalledWith({ success: true })
-		expect(res.status).toBeCalledTimes(1)
 		expect(writeReportToBitbucket).toBeCalledTimes(1)
-		expect(res.status).toBeCalledWith(200)
 	})
 
 	it('addBranchReport > should throw internal error if writeToBitbucket fails', async () => {
@@ -143,10 +143,10 @@ describe('controllers', () => {
 		expect(branchDb.get).toBeCalledTimes(1)
 		expect(pullRequestDb.create).toBeCalledTimes(0)
 		expect(pullRequestDb.update).toBeCalledTimes(1)
-		expect(send).toBeCalledTimes(1)
-		expect(send).toBeCalledWith({ success: true })
 		expect(res.status).toBeCalledTimes(1)
 		expect(res.status).toBeCalledWith(200)
+		expect(send).toBeCalledTimes(1)
+		expect(send).toBeCalledWith({ success: true })
 		expect(writeReportToBitbucket).toBeCalledTimes(1)
 		// @ts-ignore
 		expect(logger.mock.calls).toMatchSnapshot
@@ -162,10 +162,10 @@ describe('controllers', () => {
 		expect(branchDb.get).toBeCalledTimes(1)
 		expect(pullRequestDb.create).toBeCalledTimes(0)
 		expect(pullRequestDb.update).toBeCalledTimes(0)
-		expect(send).toBeCalledTimes(1)
-		expect(send).toBeCalledWith({ success: false })
 		expect(res.status).toBeCalledTimes(1)
 		expect(res.status).toBeCalledWith(500)
+		expect(send).toBeCalledTimes(1)
+		expect(send).toBeCalledWith({ success: false })
 		expect(writeReportToBitbucket).toBeCalledTimes(0)
 	})
 })
