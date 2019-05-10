@@ -6,7 +6,8 @@ jest.mock('../utils/logger')
 describe('start server', () => {
 	it('should start server', async () => {
 		await server
-		expect(logger).toBeCalledTimes(1)
-		expect(logger).toMatchSnapshot()
+		expect(logger).toHaveBeenCalledTimes(5)
+		// @ts-ignore
+		expect(logger.mock.calls).toMatchSnapshot()
 	})
 })

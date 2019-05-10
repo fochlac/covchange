@@ -3,6 +3,7 @@ declare namespace Core {
 
 	interface ErrorConstructor {
 		routerError: (level: number, res: Express.Response, ...message: Array<any>) => (error: any) => void
+		badRequest: (level: number, res: Express.Response, field:string, ...message: Array<any>) => (error: any) => void
 		internalError: (level: number, ...message: Array<any>) => (error: any) => void
 	}
 

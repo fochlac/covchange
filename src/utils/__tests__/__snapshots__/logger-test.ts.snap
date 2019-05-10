@@ -3,7 +3,7 @@
 exports[`logger create dir if missing ,write info to the output and console log 1`] = `
 Array [
   Array [
-    "/test/root/log/output2009-02-13.txt",
+    "/test/root/log//covwatcher_2009-02-13.log",
     Object {
       "autoClose": true,
       "encoding": "utf8",
@@ -16,7 +16,8 @@ Array [
 exports[`logger create dir if missing ,write info to the output and console log 2`] = `
 Array [
   Array [
-    "2009-02-13T23:31:31.011Z - 1 - testmessage1",
+    "2009-02-13T23:31:31.011Z - 1 - testmessage1
+",
   ],
 ]
 `;
@@ -34,7 +35,8 @@ Array [
   Array [
     "2009-02-13T23:31:31.011Z - 1 - testmessage1 1 
 Error: test 
-{\\"test\\":\\"test\\"}",
+{\\"test\\":\\"test\\"}
+",
   ],
 ]
 `;
@@ -54,7 +56,8 @@ Array [
   Array [
     "2009-02-13T23:31:31.011Z - 1 - testmessage1 1 
 Error: test 
-{\\"test\\":\\"test\\"} ",
+{\\"test\\":\\"test\\"} 
+",
   ],
 ]
 `;
@@ -76,7 +79,7 @@ Error: test
 exports[`logger write info to the output but not to console.log 1`] = `
 Array [
   Array [
-    "/test/root/log/output2009-02-15.txt",
+    "/test/root/log//covwatcher_2009-02-15.log",
     Object {
       "autoClose": true,
       "encoding": "utf8",
@@ -89,7 +92,8 @@ Array [
 exports[`logger write info to the output but not to console.log 2`] = `
 Array [
   Array [
-    "2009-02-15T05:31:31.011Z - 10 - testmessage1",
+    "2009-02-15T05:31:31.011Z - 10 - testmessage1
+",
   ],
 ]
 `;

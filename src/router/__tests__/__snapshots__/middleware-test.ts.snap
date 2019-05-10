@@ -324,3 +324,14 @@ Object {
   "timestamp": 1543960595393,
 }
 `;
+
+exports[`middleware parseReport > should parse the xml in req.body.report 2`] = `
+Array [
+  Array [
+    Object {
+      "field": "report",
+      "success": false,
+    },
+  ],
+]
+`;

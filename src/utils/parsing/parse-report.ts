@@ -15,8 +15,9 @@ const config = {
  */
 export function createReportFromXML(rawXML: string): Core.Report {
 	const rawProject = parse(rawXML, config).coverage.project
+	const rawFolders = rawProject.metrics.package || rawProject.package
 
-	const folders = rawProject.metrics.package.reduce(reduceFolder, {})
+	const folders = rawFolders.reduce(reduceFolder, {})
 	const files = Object.values(folders).reduce(reduceFiles, {})
 
 	return {

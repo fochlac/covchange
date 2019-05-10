@@ -13,7 +13,12 @@ const symbolsMap = {
 
 export function createCommentObject(diff: Core.DiffReport, comment?: Core.Comment, lcov?: string): Core.CommentRest {
 	const totalDiff = Math.round((diff.total.changed.statementCov - diff.total.original.statementCov) * 100) / 100
-	const changedFilesHeader = (Object.keys(diff.changed).length && ['| Quality | File | Change | Coverage |', '|---|---|---|---|']) || []
+	const changedFilesHeader = Object.keys(diff.changed).length
+	? [
+		'| Quality | File | Change | Statements | Conditionals |',
+		'|---|---|---|---|---|'
+	]
+	: []
 	const deletedFiles = diff.deleted.length ? ['##### Deleted files', '```diff', ...diff.deleted.map(name => `- ${name}`), '```'] : []
 	const covSymbol = totalDiff < 0 ? symbolsMap.decrease : symbolsMap.increase
 	const summedMetrics = Object.values(diff.changed)
@@ -26,6 +31,13 @@ export function createCommentObject(diff: Core.DiffReport, comment?: Core.Commen
 			}),
 			{ coveredStatements: 0, statements: 0 },
 		)
+	if (summedMetrics.statements === 0) {
+		return {
+			text: '### Coverage Statistics\n#### No Changes in Coverage',
+			version: comment && comment.version
+		}
+	}
+
 	const diffCoverage = Math.round((summedMetrics.coveredStatements / summedMetrics.statements) * 100)
 
 	const lines = [
@@ -50,8 +62,10 @@ export function createCommentObject(diff: Core.DiffReport, comment?: Core.Commen
 
 function newFileInfo(name: string, metrics: Core.Metrics, lcov?: string) {
 	const newCoverageCell = `${Math.round(metrics.statementCov)}% (${metrics.coveredStatements}/${metrics.statements})`
+	const newConditionalsCell = `${Math.round(metrics.conditionalCov)}% (${metrics.coveredConditionals}/${metrics.conditionals})`
+	const nameCell = lcov && lcov.length ? `[${name}](${lcov}/${name}.html)` : name
 
-	return `| ${getSymbolFromCoverage(metrics)} | ${name} | ${symbolsMap.new} *new* | ${newCoverageCell} |`
+	return `| ${getSymbolFromCoverage(metrics)} | ${nameCell} | ${symbolsMap.new} *new* | ${newCoverageCell} | ${newConditionalsCell} |`
 }
 
 function changedFileInfo(name: string, { diff: { statementCov }, changed, changed: { coveredStatements }, original }: Core.Diff, lcov?: string) {
@@ -60,8 +74,9 @@ function changedFileInfo(name: string, { diff: { statementCov }, changed, change
 	const diffCell = `${covSymbol} ${diffPercentage} (${original.coveredStatements} :arrow_right: ${coveredStatements})`
 	const newCoverageCell = `${Math.round(changed.statementCov)}% (${coveredStatements}/${changed.statements})`
 	const nameCell = lcov && lcov.length ? `[${name}](${lcov}/${name}.html)` : name
+	const newConditionalsCell = `${Math.round(changed.conditionalCov)}% (${changed.coveredConditionals}/${changed.conditionals})`
 
-	return `| ${getSymbolFromCoverage(changed)} | ${nameCell} | ${diffCell} | ${newCoverageCell} |`
+	return `| ${getSymbolFromCoverage(changed)} | ${nameCell} | ${diffCell} | ${newCoverageCell} | ${newConditionalsCell} |`
 }
 
 const getSymbolFromCoverage = (metrics: Core.Metrics) => {

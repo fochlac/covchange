@@ -3,7 +3,7 @@ declare namespace NodeJS {
 		port: number
 		address: string
 		logLevel: number
-		appRoot: string
+		logFolder: string
 		storage: string
 		bitbucket: string
 		bitbucketKey: string

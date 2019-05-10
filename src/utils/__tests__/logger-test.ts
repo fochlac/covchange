@@ -43,9 +43,9 @@ describe('logger', () => {
 		const logger = require('../logger').default
 		logger(1, 'testmessage1')
 		expect(existsSync).toBeCalledTimes(1)
-		expect(existsSync).toBeCalledWith('/test/root/log')
+		expect(existsSync).toBeCalledWith('/test/root/log/')
 		expect(mkdirSync).toBeCalledTimes(1)
-		expect(mkdirSync).toBeCalledWith('/test/root/log')
+		expect(mkdirSync).toBeCalledWith('/test/root/log/')
 		expect(createWriteStream).toBeCalledTimes(1)
 		// @ts-ignore
 		expect(createWriteStream.mock.calls).toMatchSnapshot()
@@ -127,7 +127,7 @@ describe('logger', () => {
 		const { createWriteStream, existsSync, mkdirSync, mockStream } = require('fs')
 		logger(10, 'testmessage1')
 		expect(existsSync).toBeCalledTimes(1)
-		expect(existsSync).toBeCalledWith('/test/root/log')
+		expect(existsSync).toBeCalledWith('/test/root/log/')
 		expect(mkdirSync).toBeCalledTimes(0)
 		expect(createWriteStream).toBeCalledTimes(1)
 		// @ts-ignore

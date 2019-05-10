@@ -17,11 +17,11 @@ import { createWriteStream, existsSync, mkdirSync } from 'fs'
  *
  **/
 let currentDate = new Date().toISOString().split('T')[0]
-if (!existsSync(global.appRoot + 'log')) {
-	mkdirSync(global.appRoot + 'log')
+if (!existsSync(global.logFolder)) {
+	mkdirSync(global.logFolder)
 }
 
-let logStream = createWriteStream(global.appRoot + 'log/output' + currentDate + '.txt', {
+let logStream = createWriteStream(global.logFolder + '/covwatcher_' + currentDate + '.log', {
 	flags: 'a',
 	encoding: 'utf8',
 	autoClose: true,
@@ -43,14 +43,14 @@ export default (level: number, ...message: any[]): void => {
 	if (currentDate !== new Date().toISOString().split('T')[0]) {
 		currentDate = new Date().toISOString().split('T')[0]
 		logStream.end()
-		logStream = createWriteStream(global.appRoot + 'log/output' + currentDate + '.txt', {
+		logStream = createWriteStream(global.logFolder + '/covwatcher_' + currentDate + '.log', {
 			flags: 'a',
 			encoding: 'utf8',
 			autoClose: true,
 		})
 	}
 
-	logStream.write(logMessage)
+	logStream.write(logMessage + '\n')
 }
 
 function parseMessage(item) {

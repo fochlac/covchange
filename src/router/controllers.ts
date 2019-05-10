@@ -26,7 +26,9 @@ export const addPullRequestReport = async (req, res) => {
 		const base = await getBaseBranchFromPullrequest(pullRequestRest)
 
 		const baseBranch = await branchDb.get(base.repository, base.name)
-		if (!baseBranch) throw 'Base branch is not in the database.'
+		if (!baseBranch) {
+			throw 'Base branch is not in the database.'
+		}
 		const pr = await action(pullRequestRest, base)
 
 		await writeReportToBitbucket(baseBranch, pr).catch(internalError(2, 'Error handling pull request:'))

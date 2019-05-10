@@ -11,6 +11,11 @@ const error = (location: string): Core.ErrorConstructor => ({
 
 		res.status(500).send({ success: false })
 	},
+	badRequest: (level: number, res: Express.Response, field: string, ...message: Array<any>) => (detail: Error): void => {
+		log(level, location, ...message, detail)
+
+		res.status(403).send({ success: false, field })
+	}
 })
 
 export default error

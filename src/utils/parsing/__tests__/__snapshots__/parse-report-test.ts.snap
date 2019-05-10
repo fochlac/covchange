@@ -324,3 +324,653 @@ Object {
   "timestamp": 1543960595393,
 }
 `;
+
+exports[`createReportFromXML should properly parse an xml file 2`] = `
+Object {
+  "files": Object {
+    "src/__tests__/data/branches.ts": Object {
+      "metrics": Object {
+        "conditionalCov": 0,
+        "conditionals": 0,
+        "coveredConditionals": 0,
+        "coveredStatements": 2,
+        "statementCov": 100,
+        "statements": 2,
+      },
+      "name": "branches.ts",
+    },
+    "src/__tests__/data/pullrequests.ts": Object {
+      "metrics": Object {
+        "conditionalCov": 0,
+        "conditionals": 0,
+        "coveredConditionals": 0,
+        "coveredStatements": 2,
+        "statementCov": 100,
+        "statements": 2,
+      },
+      "name": "pullrequests.ts",
+    },
+    "src/__tests__/data/reports.ts": Object {
+      "metrics": Object {
+        "conditionalCov": 0,
+        "conditionals": 0,
+        "coveredConditionals": 0,
+        "coveredStatements": 4,
+        "statementCov": 100,
+        "statements": 4,
+      },
+      "name": "reports.ts",
+    },
+    "src/__tests__/data/repository.ts": Object {
+      "metrics": Object {
+        "conditionalCov": 0,
+        "conditionals": 0,
+        "coveredConditionals": 0,
+        "coveredStatements": 1,
+        "statementCov": 100,
+        "statements": 1,
+      },
+      "name": "repository.ts",
+    },
+    "src/__tests__/mock-config.ts": Object {
+      "metrics": Object {
+        "conditionalCov": 0,
+        "conditionals": 0,
+        "coveredConditionals": 0,
+        "coveredStatements": 7,
+        "statementCov": 100,
+        "statements": 7,
+      },
+      "name": "mock-config.ts",
+    },
+    "src/config.ts": Object {
+      "metrics": Object {
+        "conditionalCov": 91.67,
+        "conditionals": 12,
+        "coveredConditionals": 11,
+        "coveredStatements": 7,
+        "statementCov": 100,
+        "statements": 7,
+      },
+      "name": "config.ts",
+    },
+    "src/index.ts": Object {
+      "metrics": Object {
+        "conditionalCov": 0,
+        "conditionals": 0,
+        "coveredConditionals": 0,
+        "coveredStatements": 3,
+        "statementCov": 100,
+        "statements": 3,
+      },
+      "name": "index.ts",
+    },
+    "src/modules/bitbucket/bitbucket.ts": Object {
+      "metrics": Object {
+        "conditionalCov": 100,
+        "conditionals": 2,
+        "coveredConditionals": 2,
+        "coveredStatements": 12,
+        "statementCov": 85.71,
+        "statements": 14,
+      },
+      "name": "bitbucket.ts",
+    },
+    "src/modules/bitbucket/comment.ts": Object {
+      "metrics": Object {
+        "conditionalCov": 100,
+        "conditionals": 4,
+        "coveredConditionals": 4,
+        "coveredStatements": 11,
+        "statementCov": 100,
+        "statements": 11,
+      },
+      "name": "comment.ts",
+    },
+    "src/modules/bitbucket/get-base-branch.ts": Object {
+      "metrics": Object {
+        "conditionalCov": 100,
+        "conditionals": 2,
+        "coveredConditionals": 2,
+        "coveredStatements": 5,
+        "statementCov": 100,
+        "statements": 5,
+      },
+      "name": "get-base-branch.ts",
+    },
+    "src/modules/db/branches.ts": Object {
+      "metrics": Object {
+        "conditionalCov": 100,
+        "conditionals": 6,
+        "coveredConditionals": 6,
+        "coveredStatements": 32,
+        "statementCov": 100,
+        "statements": 32,
+      },
+      "name": "branches.ts",
+    },
+    "src/modules/db/comments.ts": Object {
+      "metrics": Object {
+        "conditionalCov": 0,
+        "conditionals": 0,
+        "coveredConditionals": 0,
+        "coveredStatements": 10,
+        "statementCov": 100,
+        "statements": 10,
+      },
+      "name": "comments.ts",
+    },
+    "src/modules/db/pull-requests.ts": Object {
+      "metrics": Object {
+        "conditionalCov": 100,
+        "conditionals": 6,
+        "coveredConditionals": 6,
+        "coveredStatements": 32,
+        "statementCov": 100,
+        "statements": 32,
+      },
+      "name": "pull-requests.ts",
+    },
+    "src/router/controllers.ts": Object {
+      "metrics": Object {
+        "conditionalCov": 100,
+        "conditionals": 6,
+        "coveredConditionals": 6,
+        "coveredStatements": 18,
+        "statementCov": 100,
+        "statements": 18,
+      },
+      "name": "controllers.ts",
+    },
+    "src/router/index.ts": Object {
+      "metrics": Object {
+        "conditionalCov": 0,
+        "conditionals": 0,
+        "coveredConditionals": 0,
+        "coveredStatements": 2,
+        "statementCov": 100,
+        "statements": 2,
+      },
+      "name": "index.ts",
+    },
+    "src/router/middleware.ts": Object {
+      "metrics": Object {
+        "conditionalCov": 0,
+        "conditionals": 0,
+        "coveredConditionals": 0,
+        "coveredStatements": 3,
+        "statementCov": 100,
+        "statements": 3,
+      },
+      "name": "middleware.ts",
+    },
+    "src/router/validators.ts": Object {
+      "metrics": Object {
+        "conditionalCov": 100,
+        "conditionals": 2,
+        "coveredConditionals": 2,
+        "coveredStatements": 5,
+        "statementCov": 100,
+        "statements": 5,
+      },
+      "name": "validators.ts",
+    },
+    "src/utils/error.ts": Object {
+      "metrics": Object {
+        "conditionalCov": 0,
+        "conditionals": 0,
+        "coveredConditionals": 0,
+        "coveredStatements": 7,
+        "statementCov": 100,
+        "statements": 7,
+      },
+      "name": "error.ts",
+    },
+    "src/utils/file-db.ts": Object {
+      "metrics": Object {
+        "conditionalCov": 88.89,
+        "conditionals": 9,
+        "coveredConditionals": 8,
+        "coveredStatements": 50,
+        "statementCov": 100,
+        "statements": 50,
+      },
+      "name": "file-db.ts",
+    },
+    "src/utils/forge.ts": Object {
+      "metrics": Object {
+        "conditionalCov": 0,
+        "conditionals": 0,
+        "coveredConditionals": 0,
+        "coveredStatements": 4,
+        "statementCov": 100,
+        "statements": 4,
+      },
+      "name": "forge.ts",
+    },
+    "src/utils/logger.ts": Object {
+      "metrics": Object {
+        "conditionalCov": 100,
+        "conditionals": 10,
+        "coveredConditionals": 10,
+        "coveredStatements": 25,
+        "statementCov": 100,
+        "statements": 25,
+      },
+      "name": "logger.ts",
+    },
+    "src/utils/parsing/create-comment.ts": Object {
+      "metrics": Object {
+        "conditionalCov": 93.55,
+        "conditionals": 31,
+        "coveredConditionals": 29,
+        "coveredStatements": 35,
+        "statementCov": 100,
+        "statements": 35,
+      },
+      "name": "create-comment.ts",
+    },
+    "src/utils/parsing/diff.ts": Object {
+      "metrics": Object {
+        "conditionalCov": 100,
+        "conditionals": 7,
+        "coveredConditionals": 7,
+        "coveredStatements": 14,
+        "statementCov": 100,
+        "statements": 14,
+      },
+      "name": "diff.ts",
+    },
+    "src/utils/parsing/parse-report.ts": Object {
+      "metrics": Object {
+        "conditionalCov": 92.86,
+        "conditionals": 14,
+        "coveredConditionals": 13,
+        "coveredStatements": 13,
+        "statementCov": 100,
+        "statements": 13,
+      },
+      "name": "parse-report.ts",
+    },
+  },
+  "folders": Object {
+    "src": Object {
+      "files": Array [
+        Object {
+          "metrics": Object {
+            "conditionalCov": 91.67,
+            "conditionals": 12,
+            "coveredConditionals": 11,
+            "coveredStatements": 7,
+            "statementCov": 100,
+            "statements": 7,
+          },
+          "name": "config.ts",
+        },
+        Object {
+          "metrics": Object {
+            "conditionalCov": 0,
+            "conditionals": 0,
+            "coveredConditionals": 0,
+            "coveredStatements": 3,
+            "statementCov": 100,
+            "statements": 3,
+          },
+          "name": "index.ts",
+        },
+      ],
+      "metrics": Object {
+        "conditionalCov": 91.67,
+        "conditionals": 12,
+        "coveredConditionals": 11,
+        "coveredStatements": 10,
+        "statementCov": 100,
+        "statements": 10,
+      },
+      "name": "src",
+    },
+    "src.__tests__": Object {
+      "files": Array [
+        Object {
+          "metrics": Object {
+            "conditionalCov": 0,
+            "conditionals": 0,
+            "coveredConditionals": 0,
+            "coveredStatements": 7,
+            "statementCov": 100,
+            "statements": 7,
+          },
+          "name": "mock-config.ts",
+        },
+      ],
+      "metrics": Object {
+        "conditionalCov": 0,
+        "conditionals": 0,
+        "coveredConditionals": 0,
+        "coveredStatements": 7,
+        "statementCov": 100,
+        "statements": 7,
+      },
+      "name": "src.__tests__",
+    },
+    "src.__tests__.data": Object {
+      "files": Array [
+        Object {
+          "metrics": Object {
+            "conditionalCov": 0,
+            "conditionals": 0,
+            "coveredConditionals": 0,
+            "coveredStatements": 2,
+            "statementCov": 100,
+            "statements": 2,
+          },
+          "name": "branches.ts",
+        },
+        Object {
+          "metrics": Object {
+            "conditionalCov": 0,
+            "conditionals": 0,
+            "coveredConditionals": 0,
+            "coveredStatements": 2,
+            "statementCov": 100,
+            "statements": 2,
+          },
+          "name": "pullrequests.ts",
+        },
+        Object {
+          "metrics": Object {
+            "conditionalCov": 0,
+            "conditionals": 0,
+            "coveredConditionals": 0,
+            "coveredStatements": 4,
+            "statementCov": 100,
+            "statements": 4,
+          },
+          "name": "reports.ts",
+        },
+        Object {
+          "metrics": Object {
+            "conditionalCov": 0,
+            "conditionals": 0,
+            "coveredConditionals": 0,
+            "coveredStatements": 1,
+            "statementCov": 100,
+            "statements": 1,
+          },
+          "name": "repository.ts",
+        },
+      ],
+      "metrics": Object {
+        "conditionalCov": 0,
+        "conditionals": 0,
+        "coveredConditionals": 0,
+        "coveredStatements": 9,
+        "statementCov": 100,
+        "statements": 9,
+      },
+      "name": "src.__tests__.data",
+    },
+    "src.modules.bitbucket": Object {
+      "files": Array [
+        Object {
+          "metrics": Object {
+            "conditionalCov": 100,
+            "conditionals": 2,
+            "coveredConditionals": 2,
+            "coveredStatements": 12,
+            "statementCov": 85.71,
+            "statements": 14,
+          },
+          "name": "bitbucket.ts",
+        },
+        Object {
+          "metrics": Object {
+            "conditionalCov": 100,
+            "conditionals": 4,
+            "coveredConditionals": 4,
+            "coveredStatements": 11,
+            "statementCov": 100,
+            "statements": 11,
+          },
+          "name": "comment.ts",
+        },
+        Object {
+          "metrics": Object {
+            "conditionalCov": 100,
+            "conditionals": 2,
+            "coveredConditionals": 2,
+            "coveredStatements": 5,
+            "statementCov": 100,
+            "statements": 5,
+          },
+          "name": "get-base-branch.ts",
+        },
+      ],
+      "metrics": Object {
+        "conditionalCov": 100,
+        "conditionals": 8,
+        "coveredConditionals": 8,
+        "coveredStatements": 28,
+        "statementCov": 93.33,
+        "statements": 30,
+      },
+      "name": "src.modules.bitbucket",
+    },
+    "src.modules.db": Object {
+      "files": Array [
+        Object {
+          "metrics": Object {
+            "conditionalCov": 100,
+            "conditionals": 6,
+            "coveredConditionals": 6,
+            "coveredStatements": 32,
+            "statementCov": 100,
+            "statements": 32,
+          },
+          "name": "branches.ts",
+        },
+        Object {
+          "metrics": Object {
+            "conditionalCov": 0,
+            "conditionals": 0,
+            "coveredConditionals": 0,
+            "coveredStatements": 10,
+            "statementCov": 100,
+            "statements": 10,
+          },
+          "name": "comments.ts",
+        },
+        Object {
+          "metrics": Object {
+            "conditionalCov": 100,
+            "conditionals": 6,
+            "coveredConditionals": 6,
+            "coveredStatements": 32,
+            "statementCov": 100,
+            "statements": 32,
+          },
+          "name": "pull-requests.ts",
+        },
+      ],
+      "metrics": Object {
+        "conditionalCov": 100,
+        "conditionals": 12,
+        "coveredConditionals": 12,
+        "coveredStatements": 74,
+        "statementCov": 100,
+        "statements": 74,
+      },
+      "name": "src.modules.db",
+    },
+    "src.router": Object {
+      "files": Array [
+        Object {
+          "metrics": Object {
+            "conditionalCov": 100,
+            "conditionals": 6,
+            "coveredConditionals": 6,
+            "coveredStatements": 18,
+            "statementCov": 100,
+            "statements": 18,
+          },
+          "name": "controllers.ts",
+        },
+        Object {
+          "metrics": Object {
+            "conditionalCov": 0,
+            "conditionals": 0,
+            "coveredConditionals": 0,
+            "coveredStatements": 2,
+            "statementCov": 100,
+            "statements": 2,
+          },
+          "name": "index.ts",
+        },
+        Object {
+          "metrics": Object {
+            "conditionalCov": 0,
+            "conditionals": 0,
+            "coveredConditionals": 0,
+            "coveredStatements": 3,
+            "statementCov": 100,
+            "statements": 3,
+          },
+          "name": "middleware.ts",
+        },
+        Object {
+          "metrics": Object {
+            "conditionalCov": 100,
+            "conditionals": 2,
+            "coveredConditionals": 2,
+            "coveredStatements": 5,
+            "statementCov": 100,
+            "statements": 5,
+          },
+          "name": "validators.ts",
+        },
+      ],
+      "metrics": Object {
+        "conditionalCov": 100,
+        "conditionals": 8,
+        "coveredConditionals": 8,
+        "coveredStatements": 28,
+        "statementCov": 100,
+        "statements": 28,
+      },
+      "name": "src.router",
+    },
+    "src.utils": Object {
+      "files": Array [
+        Object {
+          "metrics": Object {
+            "conditionalCov": 0,
+            "conditionals": 0,
+            "coveredConditionals": 0,
+            "coveredStatements": 7,
+            "statementCov": 100,
+            "statements": 7,
+          },
+          "name": "error.ts",
+        },
+        Object {
+          "metrics": Object {
+            "conditionalCov": 88.89,
+            "conditionals": 9,
+            "coveredConditionals": 8,
+            "coveredStatements": 50,
+            "statementCov": 100,
+            "statements": 50,
+          },
+          "name": "file-db.ts",
+        },
+        Object {
+          "metrics": Object {
+            "conditionalCov": 0,
+            "conditionals": 0,
+            "coveredConditionals": 0,
+            "coveredStatements": 4,
+            "statementCov": 100,
+            "statements": 4,
+          },
+          "name": "forge.ts",
+        },
+        Object {
+          "metrics": Object {
+            "conditionalCov": 100,
+            "conditionals": 10,
+            "coveredConditionals": 10,
+            "coveredStatements": 25,
+            "statementCov": 100,
+            "statements": 25,
+          },
+          "name": "logger.ts",
+        },
+      ],
+      "metrics": Object {
+        "conditionalCov": 94.74,
+        "conditionals": 19,
+        "coveredConditionals": 18,
+        "coveredStatements": 86,
+        "statementCov": 100,
+        "statements": 86,
+      },
+      "name": "src.utils",
+    },
+    "src.utils.parsing": Object {
+      "files": Array [
+        Object {
+          "metrics": Object {
+            "conditionalCov": 93.55,
+            "conditionals": 31,
+            "coveredConditionals": 29,
+            "coveredStatements": 35,
+            "statementCov": 100,
+            "statements": 35,
+          },
+          "name": "create-comment.ts",
+        },
+        Object {
+          "metrics": Object {
+            "conditionalCov": 100,
+            "conditionals": 7,
+            "coveredConditionals": 7,
+            "coveredStatements": 14,
+            "statementCov": 100,
+            "statements": 14,
+          },
+          "name": "diff.ts",
+        },
+        Object {
+          "metrics": Object {
+            "conditionalCov": 92.86,
+            "conditionals": 14,
+            "coveredConditionals": 13,
+            "coveredStatements": 13,
+            "statementCov": 100,
+            "statements": 13,
+          },
+          "name": "parse-report.ts",
+        },
+      ],
+      "metrics": Object {
+        "conditionalCov": 94.23,
+        "conditionals": 52,
+        "coveredConditionals": 49,
+        "coveredStatements": 62,
+        "statementCov": 100,
+        "statements": 62,
+      },
+      "name": "src.utils.parsing",
+    },
+  },
+  "metrics": Object {
+    "conditionalCov": 95.5,
+    "conditionals": 111,
+    "coveredConditionals": 106,
+    "coveredStatements": 304,
+    "statementCov": 99.35,
+    "statements": 306,
+  },
+  "timestamp": 1556537851786,
+}
+`;

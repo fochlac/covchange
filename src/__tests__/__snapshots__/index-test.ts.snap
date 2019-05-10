@@ -1,18 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`start server should start server 1`] = `
-[MockFunction] {
-  "calls": Array [
-    Array [
-      0,
-      "listening to http://localhost:51337/",
-    ],
+Array [
+  Array [
+    0,
+    "listening to http://localhost:51337/",
   ],
-  "results": Array [
-    Object {
-      "type": "return",
-      "value": undefined,
-    },
+  Array [
+    0,
+    "connected to bitbucket instance ",
   ],
-}
+  Array [
+    0,
+    "with key *****",
+  ],
+  Array [
+    0,
+    "writing logs to ",
+  ],
+  Array [
+    0,
+    "using storage ",
+  ],
+]
 `;

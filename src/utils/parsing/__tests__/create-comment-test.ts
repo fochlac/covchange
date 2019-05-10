@@ -7,9 +7,16 @@ jest.mock('../../../utils/logger.ts', () => () => null)
 
 describe('diff-module', () => {
 	const diff = diffReports(mockReport, mockReport2)
+	const diff_same = diffReports(mockReport, mockReport)
 
 	it('should create a comment from the diff report', () => {
 		const comment = createCommentObject(diff)
+		expect(comment.version).toBeUndefined()
+		expect(comment).toMatchSnapshot()
+	})
+
+	it('should create a comment from diff of equal reports', () => {
+		const comment = createCommentObject(diff_same)
 		expect(comment.version).toBeUndefined()
 		expect(comment).toMatchSnapshot()
 	})
