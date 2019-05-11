@@ -2,6 +2,7 @@ import { branchDb } from '../modules/db/branches'
 import error from '../utils/error'
 import { getBaseBranchFromPullrequest } from '../modules/bitbucket/get-base-branch'
 import { pullRequestDb } from '../modules/db/pull-requests'
+import { toBoolean } from '../utils/parsing/parse-input';
 import { writeReportToBitbucket } from '../modules/bitbucket/comment'
 
 const { routerError, internalError } = error('controllers:')
@@ -19,7 +20,7 @@ export const addBranchReport = async (req, res) => {
 
 export const addPullRequestReport = async (req, res) => {
 	try {
-		const pullRequestRest: Core.PullRequestRest = { ...req.body, task: !!req.body.task }
+		const pullRequestRest: Core.PullRequestRest = { ...req.body, task: toBoolean(req.body.task) }
 		const action = (await pullRequestDb.exists(pullRequestRest.repository, pullRequestRest.name))
 			? pullRequestDb.update
 			: pullRequestDb.create

@@ -2,7 +2,7 @@ import './mock-config'
 
 import { reportRaw, reportRaw2 } from './data/reports'
 
-import logger from '../utils/logger';
+import logger from '../utils/logger'
 import { mockBranchRest } from './data/branches'
 import { mockPullRequestRest } from './data/pullrequests'
 import nock from 'nock'
@@ -24,7 +24,6 @@ jest.mock('fs-extra', () => {
 })
 
 describe('upload branch, upload pr, expect repo', () => {
-
 	afterEach(() => {
 		// @ts-ignore
 		logger.mockClear()
@@ -67,16 +66,18 @@ describe('upload branch, upload pr, expect repo', () => {
 			.post('/rest/api/1.0/users/slug/repos/name/pull-requests/12345/comments/')
 			.reply(200, { version: 0, id: 1 })
 
-		await supertest(router)
+		const response_branch = await supertest(router)
 			.post('/api/branch')
 			.send({ ...mockBranchRest, report: reportRaw })
-			.expect(200)
 
-		await supertest(router)
+		const response_pr = await supertest(router)
 			.post('/api/pullrequest')
 			.send({ ...mockPullRequestRest, report: reportRaw })
-			.expect(200)
 
+		expect(response_branch.statusCode).toBe(200)
+		expect(response_branch.body).toMatchSnapshot()
+		expect(response_pr.statusCode).toBe(200)
+		expect(response_pr.body).toMatchSnapshot()
 		expect(bitbucket.isDone()).toBeTruthy()
 
 		//@ts-ignore
@@ -103,10 +104,12 @@ describe('upload branch, upload pr, expect repo', () => {
 			.put('/rest/api/1.0/users/slug/repos/name/pull-requests/12345/comments/1', { version: 2, text: /.*/ })
 			.reply(200, { version: 3, id: 1 })
 
-		await supertest(router)
+		const response_pr = await supertest(router)
 			.post('/api/pullrequest')
 			.send({ ...mockPullRequestRest, report: reportRaw })
-			.expect(200)
+
+		expect(response_pr.statusCode).toBe(200)
+		expect(response_pr.body).toMatchSnapshot()
 
 		expect(bitbucket.isDone()).toBeTruthy()
 
@@ -136,15 +139,18 @@ describe('upload branch, upload pr, expect repo', () => {
 			.post('/rest/api/1.0/tasks/')
 			.reply(200, { id: 1 })
 
-		await supertest(router)
+		const response_branch = await supertest(router)
 			.post('/api/branch')
 			.send({ ...mockBranchRest, report: reportRaw2 })
-			.expect(200)
 
-		await supertest(router)
+		const response_pr = await supertest(router)
 			.post('/api/pullrequest')
 			.send({ ...mockPullRequestRest, task: 1, report: reportRaw })
-			.expect(200)
+
+		expect(response_branch.statusCode).toBe(200)
+		expect(response_branch.body).toMatchSnapshot()
+		expect(response_pr.statusCode).toBe(200)
+		expect(response_pr.body).toMatchSnapshot()
 
 		expect(bitbucket.isDone()).toBeTruthy()
 

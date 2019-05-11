@@ -1,5 +1,5 @@
 import { addBranchReport, addPullRequestReport } from './controllers'
-import { branch, pullRequestId, report, repository, url } from './validators'
+import { boolean, branch, pullRequestId, report, repository, url } from './validators'
 
 import { createRouter } from 'abstract-express-router'
 import { join } from 'path'
@@ -23,7 +23,8 @@ export const router = createRouter(
 						name: pullRequestId,
 						report,
 						repository,
-						lcov: url
+						lcov: url,
+						task: boolean
 					},
 					middleware: [parseReport],
 					controller: addPullRequestReport,

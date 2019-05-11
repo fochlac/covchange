@@ -1,6 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`upload branch, upload pr, expect repo should create branch, create pullrequest and send comment 1`] = `
+Object {
+  "success": true,
+}
+`;
+
+exports[`upload branch, upload pr, expect repo should create branch, create pullrequest and send comment 2`] = `
+Object {
+  "success": true,
+}
+`;
+
+exports[`upload branch, upload pr, expect repo should create branch, create pullrequest and send comment 3`] = `
 Array [
   Array [
     8,
@@ -36,6 +48,18 @@ Array [
 `;
 
 exports[`upload branch, upload pr, expect repo should update branch, update comment and create task 1`] = `
+Object {
+  "success": true,
+}
+`;
+
+exports[`upload branch, upload pr, expect repo should update branch, update comment and create task 2`] = `
+Object {
+  "success": true,
+}
+`;
+
+exports[`upload branch, upload pr, expect repo should update branch, update comment and create task 3`] = `
 Array [
   Array [
     8,
@@ -61,6 +85,12 @@ Array [
 `;
 
 exports[`upload branch, upload pr, expect repo should update pullrequest and update comment 1`] = `
+Object {
+  "success": true,
+}
+`;
+
+exports[`upload branch, upload pr, expect repo should update pullrequest and update comment 2`] = `
 Array [
   Array [
     8,
